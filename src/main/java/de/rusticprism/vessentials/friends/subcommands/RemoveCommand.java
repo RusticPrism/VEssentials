@@ -13,7 +13,7 @@ public class RemoveCommand extends SubCommand {
         if(source instanceof Player player) {
             if(player.hasPermission("essentials.command.friends")) {
                 Players.getPlayer(player).removeFriend(args[0]);
-                player.sendMessage(Component.text(VEssentials.plugin.prefix + "§8Removed §1" + VEssentials.plugin.server.getPlayer(args[0])+ " §8from your friends list!"));
+                player.sendMessage(Component.text(VEssentials.plugin.prefix + "§8Removed §1" + VEssentials.plugin.server.getPlayer(args[0]).get().getUsername()+ " §8from your friends list!"));
             }else player.sendMessage(Component.text(VEssentials.plugin.noperms));
         }else source.sendMessage(Component.text(VEssentials.plugin.nocons));
     }
