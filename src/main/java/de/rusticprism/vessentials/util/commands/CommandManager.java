@@ -2,6 +2,8 @@ package de.rusticprism.vessentials.util.commands;
 
 import com.velocitypowered.api.command.CommandSource;
 import de.rusticprism.vessentials.VEssentials;
+import de.rusticprism.vessentials.util.CompletionSupplier;
+import de.rusticprism.vessentials.util.TabCompleter;
 
 import java.util.*;
 
@@ -18,6 +20,9 @@ public class CommandManager {
 
     public void registerMain(String command, EssentialsCommand perform, String... alias) {
         maincommands.put(command, perform);
+        for (String alia : alias) {
+            maincommands.put(alia,perform);
+        }
         VEssentials.plugin.server.getCommandManager().register(command, new de.rusticprism.vessentials.commands.EssentialsCommand(), alias);
     }
 
@@ -66,8 +71,9 @@ public class CommandManager {
     }
 
     public List<String> complete(String command, CommandSource source, String[] args) {
-        if (!maincommands.containsKey(command)) {
-            return Collections.emptyList();
-        } else return maincommands.get(command).complete(args);
+       if(!maincommands.containsKey(command)) {
+           return TabCompleter.create().complete(Arrays.stream(args).toList());
+       }
+       return maincommands.get(command).complete(args).complete(Arrays.stream(args).toList());
     }
 }

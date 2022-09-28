@@ -13,7 +13,7 @@ public class EssentialsCommand implements SimpleCommand {
     @Override
     public void execute(Invocation invocation) {
         if(!VEssentials.plugin.cmdman.perform(invocation.alias(),invocation.source(),invocation.arguments())) {
-            invocation.source().sendMessage(Component.text(VEssentials.plugin.prefix + "§cI don't know that Command. Use /help for help!"));
+            invocation.source().sendMessage(VEssentials.plugin.prefix.append(Component.text("§cI don't know that Command. Use /help for help!")));
         }
     }
 
