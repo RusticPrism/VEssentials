@@ -1,14 +1,12 @@
 package de.rusticprism.vessentials.util.commands;
 
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.commands.BroadcastCommand;
-import de.rusticprism.vessentials.commands.FriendsCommand;
-import de.rusticprism.vessentials.commands.OnlineCommand;
-import de.rusticprism.vessentials.commands.ServerCommand;
+import de.rusticprism.vessentials.commands.*;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.Configuration;
 import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.friends.subcommands.*;
+import de.rusticprism.vessentials.friends.subcommands.MessageCommand;
 
 public class Setup {
     public Configurations configs;
@@ -25,6 +23,7 @@ public class Setup {
         VEssentials.plugin.cmdman.registerMain("online", new OnlineCommand(),"glist");
         VEssentials.plugin.cmdman.registerMain("broadcast", new BroadcastCommand(),"shout");
         VEssentials.plugin.cmdman.registerMain("server",new ServerCommand());
+        VEssentials.plugin.cmdman.registerMain("ban", new BanCommand());
         VEssentials.plugin.cmdman.registerSub("add", new AddCommand(),VEssentials.plugin.cmdman.getMainCommand("friends"));
         VEssentials.plugin.cmdman.registerSub("remove", new RemoveCommand(),VEssentials.plugin.cmdman.getMainCommand("friends"));
         VEssentials.plugin.cmdman.registerSub("accept", new AcceptCommand(),VEssentials.plugin.cmdman.getMainCommand("friends"));

@@ -28,11 +28,12 @@ public class BanCommand extends EssentialsCommand {
                     }
                     BanConfig config = (BanConfig) VEssentials.plugin.setup.configs.getConfigByName("bannedplayers");
                     config.banPlayer(String.valueOf(player.getUniqueId()),builder.toString());
-                    target.disconnect(Component.text("§8--------------------------------------------\n"
-                            + "\n §1Banned"
-                            + "\n \n"
-                            + ChatColor.translateAlternateColorCode("&", builder.toString())
-                            + "\n \n§8--------------------------------------------"));
+                    target.disconnect(Component.text("§8-------------------------------\n"
+                            + "\n §1§lYou got Banned by " + player.getUsername()
+                            + "\n"
+                            + "§8Reason: §1" + ChatColor.translateAlternateColorCode("&", builder.toString())
+                            +"\n§8Duration: §1Lifetime"
+                            + "\n \n§8-------------------------------"));
                 }else player.sendMessage(VEssentials.plugin.prefix.append(Component.text("§cThis Player isn't online!")));
             }else player.sendMessage(VEssentials.plugin.noperms);
         }else source.sendMessage(VEssentials.plugin.nocons);
