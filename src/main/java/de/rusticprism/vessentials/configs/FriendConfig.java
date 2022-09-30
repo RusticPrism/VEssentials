@@ -36,15 +36,15 @@ public class FriendConfig extends Configuration {
 
             // print map entries
             for (UUID uuid : uuids) {
-              if(VEssentials.plugin.server.getPlayer(uuid).isPresent()) {
-                  this.friends.friends.add(new Friend(VEssentials.plugin.server.getPlayer(uuid).get()));
+              if(VEssentials.PLUGIN.server.getPlayer(uuid).isPresent()) {
+                  this.friends.friends.add(new Friend(VEssentials.PLUGIN.server.getPlayer(uuid).get()));
               }
             }
 
             // close reader
             reader.close();
         } catch (IOException e) {
-            VEssentials.plugin.logger.error("Couldn't read Config File!");
+            VEssentials.PLUGIN.logger.error("Couldn't read Config File!");
         }
     }
 
@@ -61,7 +61,7 @@ public class FriendConfig extends Configuration {
                writer.flush();
                writer.close();
            } catch (IOException e) {
-               VEssentials.plugin.logger.error("Couldn't save Config!");
+               VEssentials.PLUGIN.logger.error("Couldn't save Config!");
            }
     }
 }

@@ -5,6 +5,7 @@ import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.messages.LegacyChannelIdentifier;
 import de.rusticprism.vessentials.VEssentials;
+import de.rusticprism.vessentials.util.Messages;
 import net.kyori.adventure.text.Component;
 
 public class PluginMessage{
@@ -20,7 +21,7 @@ public class PluginMessage{
         out.writeUTF(builder.toString());
         if(player.getCurrentServer().isPresent()) {
             player.getCurrentServer().get().sendPluginMessage(new LegacyChannelIdentifier("BungeeCord"), out.toByteArray());
-        }else player.sendMessage(Component.text(VEssentials.plugin.prefix + "§4Couldn't find the Server your on!"));
+        }else player.sendMessage(Component.text(Messages.prefix + "§4Couldn't find the Server your on!"));
     }
     public static void send(Player player, String subchannel,String message) {
         ByteArrayDataOutput output = ByteStreams.newDataOutput();
@@ -28,6 +29,6 @@ public class PluginMessage{
         output.writeUTF(message);
         if(player.getCurrentServer().isPresent()) {
             player.getCurrentServer().get().sendPluginMessage(new LegacyChannelIdentifier("BungeeCord"), output.toByteArray());
-        }else player.sendMessage(Component.text(VEssentials.plugin.prefix + "§4Couldn't find the Server your on!"));
+        }else player.sendMessage(Component.text(Messages.prefix + "§4Couldn't find the Server your on!"));
     }
 }

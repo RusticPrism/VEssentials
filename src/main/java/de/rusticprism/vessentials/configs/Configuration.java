@@ -18,16 +18,17 @@ public abstract class Configuration {
     private final String name;
     public Configuration(String filename) {
         this.name = filename;
-        file = new File(VEssentials.plugin.path.toFile(),filename + ".json");
+        file = new File(VEssentials.PLUGIN.path.toFile(),filename + ".json");
         if(!file.exists()) {
             file.getParentFile().mkdirs();
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                VEssentials.plugin.logger.error("Couldn't create Config!");
+                VEssentials.PLUGIN.logger.error("Couldn't create Config!");
             }
         }
         config = new HashMap<>();
+        loadConfig();
     }
     public void loadConfig() {
         try {
@@ -49,7 +50,7 @@ public abstract class Configuration {
             // close reader
             reader.close();
         } catch (IOException e) {
-            VEssentials.plugin.logger.error("Couldn't read Config File!");
+            VEssentials.PLUGIN.logger.error("Couldn't read Config File!");
         }
     }
 
@@ -66,7 +67,7 @@ public abstract class Configuration {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            VEssentials.plugin.logger.error("Couldn't save Config!");
+            VEssentials.PLUGIN.logger.error("Couldn't save Config!");
         }
     }
     public String getString(String key) {

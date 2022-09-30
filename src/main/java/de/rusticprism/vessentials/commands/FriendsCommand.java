@@ -2,14 +2,18 @@ package de.rusticprism.vessentials.commands;
 
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
-import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.friends.PluginMessage;
 import de.rusticprism.vessentials.util.CompletionSupplier;
+import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.TabCompleter;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 
 public class FriendsCommand extends EssentialsCommand {
+
+    public FriendsCommand() {
+        super("essentials.command.friends");
+    }
 
     @Override
     public void performCommand(CommandSource source, String command, String[] args) {
@@ -18,8 +22,8 @@ public class FriendsCommand extends EssentialsCommand {
                 if (args.length == 0) {
                     PluginMessage.openInv(player);
                 }
-            }else player.sendMessage(VEssentials.plugin.noperms);
-        }else source.sendMessage(VEssentials.plugin.nocons);
+            }else player.sendMessage(Messages.noperms);
+        }else source.sendMessage(Messages.nocons);
     }
 
     @Override

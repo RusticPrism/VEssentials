@@ -13,6 +13,9 @@ public class Players {
         players.add(friends);
     }
     public static void removePlayer(OnlinePlayer friends) {
+        if(friends == null) {
+            return;
+        }
         friends.getConfig().saveConfig();
         players.remove(friends);
     }

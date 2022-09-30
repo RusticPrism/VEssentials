@@ -53,13 +53,13 @@ public class OnlinePlayer {
         }
     }
     public void removeFriend(String name) {
-            if(VEssentials.plugin.server.getPlayer(name).isPresent()) {
-                friends.remove(new Friend(VEssentials.plugin.server.getPlayer(name).get()));
+            if(VEssentials.PLUGIN.server.getPlayer(name).isPresent()) {
+                friends.remove(new Friend(VEssentials.PLUGIN.server.getPlayer(name).get()));
             }else System.out.println("Test");
     }
     public void removeFriend(UUID uuid) {
-            if(VEssentials.plugin.server.getPlayer(uuid).isPresent()) {
-                friends.remove(new Friend(VEssentials.plugin.server.getPlayer(uuid).get()));
+            if(VEssentials.PLUGIN.server.getPlayer(uuid).isPresent()) {
+                friends.remove(new Friend(VEssentials.PLUGIN.server.getPlayer(uuid).get()));
             }
     }
     public boolean contains(Friend friend) {

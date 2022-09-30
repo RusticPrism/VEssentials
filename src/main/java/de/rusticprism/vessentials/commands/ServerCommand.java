@@ -5,6 +5,7 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.util.CompletionSupplier;
+import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.TabCompleter;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
@@ -17,17 +18,21 @@ import net.kyori.adventure.text.format.TextColor;
 import java.util.List;
 
 public class ServerCommand extends EssentialsCommand {
+    public ServerCommand() {
+        super("essentials.command.server");
+    }
+
     @Override
     public void performCommand(CommandSource source, String command, String[] args) {
         if(source instanceof Player player) {
             if(Permission.hasPermission(player,"essentials.command.server")) {
                 if (player.getCurrentServer().isPresent()) {
                     if (args.length == 0) {
-                       Component servermsg = VEssentials.plugin.prefix.append(Component.text("§8You are currently connected to §1" + player.getCurrentServer().get().getServerInfo().getName() + "§8.")
+                       Component servermsg = Messages.prefix.append(Component.text("§8You are currently connected to §1" + player.getCurrentServer().get().getServerInfo().getName() + "§8.")
                                .append(Component.text("\n"))
-                               .append(VEssentials.plugin.prefix)
+                               .append(Messages.prefix)
                                .append(Component.text("§8Available Servers: §1")));
-                        List<RegisteredServer> rs = (List<RegisteredServer>) VEssentials.plugin.server.getAllServers();
+                        List<RegisteredServer> rs = (List<RegisteredServer>) VEssentials.PLUGIN.server.getAllServers();
                         for(int i = 0; i < rs.size(); i++) {
                             RegisteredServer server = rs.get(i);
                            servermsg = servermsg.append(formatServer(server,player));
@@ -36,22 +41,21 @@ public class ServerCommand extends EssentialsCommand {
                             }
                         }
                         player.sendMessage(servermsg);
-
                     }else if(args.length == 1) {
-                        if(VEssentials.plugin.server.getServer(args[0]).isPresent()) {
-                            RegisteredServer server = VEssentials.plugin.server.getServer(args[0]).get();
-                            player.sendMessage(VEssentials.plugin.prefix.append(Component.text("§8Trying to connect to §1" + server.getServerInfo().getName() + "§8...")));
+                        if(VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
+                            RegisteredServer server = VEssentials.PLUGIN.server.getServer(args[0]).get();
+                            player.sendMessage(Messages.prefix.append(Component.text("§8Trying to connect to §1" + server.getServerInfo().getName() + "§8...")));
                             player.createConnectionRequest(server).fireAndForget();
                         }
-                    }else player.sendMessage(VEssentials.plugin.arguments);
-                }else player.sendMessage(VEssentials.plugin.prefix.append(Component.text("§cYou are on no server!")));
-            }else player.sendMessage(VEssentials.plugin.noperms);
-        }else source.sendMessage(VEssentials.plugin.nocons);
+                    }else player.sendMessage(VEssentials.PLUGIN.arguments);
+                }else player.sendMessage(Messages.prefix.append(Component.text("§cYou are on no server!")));
+            }else player.sendMessage(Messages.noperms);
+        }else source.sendMessage(Messages.nocons);
     }
 
     @Override
     public TabCompleter complete(String[] args) {
-        return TabCompleter.create().from(0, CompletionSupplier.contains(VEssentials.plugin.server.getConfiguration().getServers().keySet()));
+        return TabCompleter.create().from(0, CompletionSupplier.contains(VEssentials.PLUGIN.server.getConfiguration().getServers().keySet()));
     }
     public Component formatServer(RegisteredServer server, Player player) {
         Component component = Component.text(server.getServerInfo().getName());

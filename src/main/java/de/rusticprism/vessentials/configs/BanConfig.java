@@ -1,52 +1,60 @@
 package de.rusticprism.vessentials.configs;
 
-import com.google.common.collect.ImmutableList;
-import com.google.errorprone.annotations.Immutable;
 import com.velocitypowered.api.proxy.Player;
-import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.util.BannedPlayer;
 
 import java.util.*;
 
 public class BanConfig extends Configuration{
-    private final List<BannedPlayer> bannedPlayers;
+    private final List<String> bannedPlayers;
     public BanConfig() {
         super("bannedplayers");
         bannedPlayers = new ArrayList<>();
         for (String uuid : config.keySet()) {
-            bannedPlayers.add(new BannedPlayer(uuid,config.get(uuid + ".reason")));
+           if(!uuid.contains(".")) {
+               bannedPlayers.add(uuid);
+           }
         }
     }
-    public List<BannedPlayer> getBannedPlayers() {
+    public List<String> getBannedPlayers() {
         return bannedPlayers;
     }
     public boolean isBanned(Player player) {
-        return config.containsKey(player.getUniqueId().toString());
+        return isBannedUuid(player.getUniqueId().toString());
     }
-    public boolean isBanned(String uuid) {
+    public boolean isBannedUuid(String uuid) {
         return config.containsKey(uuid);
     }
-    public BannedPlayer getBannedPlayer(String uuid) {
-        BannedPlayer player = null;
-        for (BannedPlayer player1 : bannedPlayers) {
-            if(player1.getUuid().equalsIgnoreCase(uuid)) {
-                player = player1;
-                break;
-            }
-        }
-        return player;
+    public boolean isBannedName(String name) {
+      return config.containsValue(name);
     }
-    public void banPlayer(String uuid,String reason) {
-        bannedPlayers.add(new BannedPlayer(uuid, reason));
-        config.put(uuid + ".reason",reason);
-        config.put(uuid,"true");
+    public void banPlayer(Player player,String reason,String time,String bannedby) {
+        bannedPlayers.add(player.getUniqueId().toString());
+        config.put(player.getUniqueId().toString() + ".reason",reason);
+        config.put(player.getUniqueId().toString(),"true");
+        config.put(player.getUniqueId().toString()+".name",player.getUsername());
+        config.put(player.getUniqueId().toString()+".time",time);
+        config.put(player.getUniqueId().toString()+".bannedby",bannedby);
+        saveConfig();
     }
     public void unbanPlayer(String uuid) {
-        for (BannedPlayer player1 : bannedPlayers) {
-            if(player1.getUuid().equalsIgnoreCase(uuid)) {
+        for (String player1 : bannedPlayers) {
+            if(player1.equalsIgnoreCase(uuid)) {
                 bannedPlayers.remove(player1);
                 config.remove(uuid);
                 config.remove(uuid + ".reason");
+                config.remove(uuid + ".name");
+                config.remove(uuid + ".time");
+                config.remove(uuid + ".bannedby");
+                saveConfig();
+                break;
+            }
+        }
+    }
+    public void unbanPlayerName(String name) {
+        for(Map.Entry<String,String> entry : config.entrySet()) {
+            if(entry.getValue().equalsIgnoreCase(name)) {
+                unbanPlayer(entry.getKey().split("\\.")[0]);
+                break;
             }
         }
     }

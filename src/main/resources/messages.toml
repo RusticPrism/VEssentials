@@ -1,0 +1,15 @@
+# Config Version. Pls do not change this
+config-version = "1.0"
+
+# The Prefix of this PLUGIN
+prefix = "§1VEssentials §7>>"
+
+# Message when you don´t have the Permission for something
+noperms = "%Prefix% §cYou don´t have the Permission to perform that Command!"
+
+# Message if the action needs you to be a Player
+nocons = "%Prefix% §cYou have to be a Player to perform that Command!"
+
+# The ban and kick Message when you get banned/kicked
+banmessage = [ "§8-------------------------------", " ", "§8You got §1§lBanned §8by §1§l%Player%", " ", "§8Reason: §1§l%Reason%", " ", "§8Duration: §1§l%Duration%", " ", "§8------------------------------" ]
+kickmessage = [ "§8-------------------------------", " ", "§8You got §1§lKicked §8by §1§l%Player%", " ", "§8Reason: §1§l%Reason%", " ", "§8------------------------------" ]

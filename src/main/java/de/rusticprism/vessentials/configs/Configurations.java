@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Configurations {
-    private final List<Configuration> configs;
+    public final List<Configuration> configs;
     public Configurations() {
         configs = new ArrayList<>();
     }

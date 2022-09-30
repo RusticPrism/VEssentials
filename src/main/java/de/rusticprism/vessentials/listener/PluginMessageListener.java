@@ -10,10 +10,10 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class PluginMessageListener{
+public class PluginMessageListener {
 
     @Subscribe
-    public void onPluginMessage(PluginMessageEvent event) {
+    public void onPLUGINMessage(PluginMessageEvent event) {
         if(event.getIdentifier().getId().equalsIgnoreCase("BungeeCord")) {
             DataInputStream in = new DataInputStream(new ByteArrayInputStream(event.getData()));
             try {
@@ -23,12 +23,12 @@ public class PluginMessageListener{
                     byte[] data = new byte[len];
                     in.readFully(data);
                     String s = new String(data);
-                    if(VEssentials.plugin.server.getPlayer(s).isPresent()) {
+                    if(VEssentials.PLUGIN.server.getPlayer(s).isPresent()) {
                         StringBuilder builder = new StringBuilder();
-                        for(String str : Players.getPlayer(VEssentials.plugin.server.getPlayer(s).get()).getStatus()) {
+                        for(String str : Players.getPlayer(VEssentials.PLUGIN.server.getPlayer(s).get()).getStatus()) {
                             builder.append(str).append(" ");
                         }
-                        PluginMessage.send(VEssentials.plugin.server.getPlayer(s).get(),"getStatus",builder.toString());
+                        PluginMessage.send(VEssentials.PLUGIN.server.getPlayer(s).get(),"getStatus",builder.toString());
                     }
                 }
             } catch (IOException e) {

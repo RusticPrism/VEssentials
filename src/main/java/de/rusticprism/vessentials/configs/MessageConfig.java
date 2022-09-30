@@ -11,6 +11,10 @@ import java.nio.file.Files;
 public class MessageConfig {
     private final Toml config;
     public String banmessage;
+    public String kickmessage;
+    public String prefix;
+    public String noperms;
+    public String nocons;
 
     public MessageConfig() {
         config = loadConfig();
@@ -18,7 +22,7 @@ public class MessageConfig {
     }
 
     private Toml loadConfig() {
-        File folder = VEssentials.plugin.path.toFile();
+        File folder = VEssentials.PLUGIN.path.toFile();
         File file = new File(folder, "messages.toml");
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
@@ -32,7 +36,7 @@ public class MessageConfig {
                     file.createNewFile();
                 }
             } catch (IOException exception) {
-                VEssentials.plugin.logger.error(exception.getMessage());
+                VEssentials.PLUGIN.logger.error(exception.getMessage());
                 return null;
             }
         }
@@ -40,11 +44,21 @@ public class MessageConfig {
     }
     private void loadToVariables() {
         StringBuilder banmessagebuilder = new StringBuilder();
-        for(Object str : config.getList("BanMessage")) {
-            if(str instanceof String) {
-                banmessagebuilder.append(str).append(" ");
+        for (Object str : config.getList("banmessage")) {
+            if (str instanceof String) {
+                banmessagebuilder.append(str).append("\n");
             }
         }
-        banmessage = banmessagebuilder.substring(0,banmessagebuilder.length() - 1);
+        banmessage = banmessagebuilder.substring(0, banmessagebuilder.length() - 1);
+        StringBuilder kickmessagebuilder = new StringBuilder();
+        for (Object str : config.getList("kickmessage")) {
+            if (str instanceof String) {
+                kickmessagebuilder.append(str).append("\n");
+            }
+        }
+        kickmessage = kickmessagebuilder.substring(0, kickmessagebuilder.length() - 1);
+        prefix = config.getString("prefix");
+        nocons = config.getString("nocons");
+        noperms = config.getString("noperms");
     }
 }

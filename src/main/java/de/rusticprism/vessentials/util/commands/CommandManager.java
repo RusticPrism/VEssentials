@@ -1,8 +1,8 @@
 package de.rusticprism.vessentials.util.commands;
 
+import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.util.CompletionSupplier;
 import de.rusticprism.vessentials.util.TabCompleter;
 
 import java.util.*;
@@ -10,12 +10,10 @@ import java.util.*;
 public class CommandManager {
     private final HashMap<String, EssentialsCommand> maincommands;
     private final HashMap<SubCommand, String> subcommands;
-    private final HashMap<String, SubCommand> toggledsubcommands;
 
     public CommandManager() {
         maincommands = new HashMap<>();
         subcommands = new HashMap<>();
-        toggledsubcommands = new HashMap<>();
     }
 
     public void registerMain(String command, EssentialsCommand perform, String... alias) {
@@ -23,12 +21,16 @@ public class CommandManager {
         for (String alia : alias) {
             maincommands.put(alia,perform);
         }
-        VEssentials.plugin.server.getCommandManager().register(command, new de.rusticprism.vessentials.commands.EssentialsCommand(), alias);
+        /*
+        new BrigadierCommand();
+        /\
+        Um Command nur anzuzeigen wenn richtige Permission!
+         */
+        VEssentials.PLUGIN.server.getCommandManager().register(command,new de.rusticprism.vessentials.commands.EssentialsCommand(),alias);
     }
 
     public void registerSub(String command, SubCommand subCommand, EssentialsCommand maincommand, String... alias) {
         subcommands.put(subCommand, command);
-        toggledsubcommands.put(command, subCommand);
         subCommand.setMainCommand(maincommand);
     }
 
@@ -51,12 +53,10 @@ public class CommandManager {
     }
 
     public boolean perform(String command, CommandSource source, String[] args) {
-        if (args.length == 0) {
-            if (maincommands.containsKey(command)) {
-                maincommands.get(command).performCommand(source, command, args);
-                return true;
-            }
-        } else if (maincommands.containsKey(command)) {
+        if(args.length == 0 && maincommands.containsKey(command)) {
+            maincommands.get(command).performCommand(source,command,args);
+            return true;
+        }else if (maincommands.containsKey(command)) {
             maincommands.get(command).performCommand(source, command, args);
             String[] subargs = new String[args.length - 1];
             System.arraycopy(args, 1, subargs, 0, args.length - 1);
@@ -66,14 +66,13 @@ public class CommandManager {
                 }
             }
             return true;
-        }
-        return false;
+        }else return false;
     }
 
     public List<String> complete(String command, CommandSource source, String[] args) {
-       if(!maincommands.containsKey(command)) {
-           return TabCompleter.create().complete(Arrays.stream(args).toList());
-       }
-       return maincommands.get(command).complete(args).complete(Arrays.stream(args).toList());
+        if(!maincommands.containsKey(command)) {
+            return TabCompleter.create().complete(Arrays.stream(args).toList());
+        }
+        return maincommands.get(command).complete(args).complete(Arrays.stream(args).toList());
     }
 }
