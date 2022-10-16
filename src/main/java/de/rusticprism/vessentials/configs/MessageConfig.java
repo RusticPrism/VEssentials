@@ -9,12 +9,19 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class MessageConfig {
-    private final Toml config;
+    public final Toml config;
     public String banmessage;
     public String kickmessage;
     public String prefix;
     public String noperms;
     public String nocons;
+    public String motd;
+    public boolean tablist;
+    public String header;
+    public String footer;
+    public String restartmessage;
+    public String restartkick;
+    public String maintenance;
 
     public MessageConfig() {
         config = loadConfig();
@@ -60,5 +67,36 @@ public class MessageConfig {
         prefix = config.getString("prefix");
         nocons = config.getString("nocons");
         noperms = config.getString("noperms");
+        motd = config.getString("motdline1") + "\n" + config.getString("motdline2");
+        tablist = config.getBoolean("tablist");
+        StringBuilder footerbuilder = new StringBuilder();
+        for(Object str : config.getList("footer")) {
+            if(str instanceof String) {
+                footerbuilder.append(str).append("\n");
+            }
+        }
+        footer = footerbuilder.substring(0,footerbuilder.length() - 1);
+        StringBuilder headerbuilder = new StringBuilder();
+        for(Object str : config.getList("header")) {
+            if(str instanceof String) {
+                headerbuilder.append(str).append("\n");
+            }
+        }
+        header = headerbuilder.substring(0,headerbuilder.length() - 1);
+        restartmessage = config.getString("restart-message");
+        StringBuilder restartkickbuilder = new StringBuilder();
+        for(Object str : config.getList("restart-kick")) {
+            if(str instanceof String) {
+                restartkickbuilder.append(str).append("\n");
+            }
+        }
+        restartkick = restartkickbuilder.substring(0,restartkickbuilder.length() -1);
+        StringBuilder maintenancebuilder = new StringBuilder();
+        for(Object str : config.getList("maintenance")) {
+            if(str instanceof String) {
+                maintenancebuilder.append(str).append("\n");
+            }
+        }
+        maintenance = maintenancebuilder.substring(maintenancebuilder.length() - 1);
     }
 }

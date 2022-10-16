@@ -6,11 +6,9 @@ import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.friends.Players;
 import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.commands.SubCommand;
 import net.kyori.adventure.text.Component;
 
-public class AcceptCommand extends SubCommand {
-    @Override
+public class AcceptCommand {
     public void performCommand(CommandSource source, String[] args) {
         if(source instanceof Player player) {
             if(Permission.hasPermission(player,"essentials.command.friends")) {

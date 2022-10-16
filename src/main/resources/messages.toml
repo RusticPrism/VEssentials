@@ -1,7 +1,7 @@
-# Config Version. Pls do not change this
+# Config Version. Pls do not change this!
 config-version = "1.0"
 
-# The Prefix of this PLUGIN
+# The Prefix of this Plugin
 prefix = "§1VEssentials §7>>"
 
 # Message when you don´t have the Permission for something
@@ -13,3 +13,23 @@ nocons = "%Prefix% §cYou have to be a Player to perform that Command!"
 # The ban and kick Message when you get banned/kicked
 banmessage = [ "§8-------------------------------", " ", "§8You got §1§lBanned §8by §1§l%Player%", " ", "§8Reason: §1§l%Reason%", " ", "§8Duration: §1§l%Duration%", " ", "§8------------------------------" ]
 kickmessage = [ "§8-------------------------------", " ", "§8You got §1§lKicked §8by §1§l%Player%", " ", "§8Reason: §1§l%Reason%", " ", "§8------------------------------" ]
+
+# Change the Motd here
+motdline1 = "&e-&6*&e-&6*&e-&6*&e-&6*&e- &6&lThe Example Network &e-&6*&e-&6*&e-&6*&e-&6*&e-"
+motdline2 = " &6&l| &e Sub Line  &6&l| &e  mc.example.com    &6&l| &eSub Line &6&l|"
+
+# Enable/Disable the Tablist here
+tablist = true
+
+# Set the Global Tablist here
+header = [ "&8&m                              &r&8[&1&lExample&r&8]&8&m                            ", "&8Welcome &1%Player% &8on &1mc.example.net" , " ", "&8You´re currently connected to &1%Server%" ]
+footer = [" &8Time: &1%Time%", "&8You´re Ping: &1%Ping%", "&8Discord: &1discord.example.com", "&8&m                              &r&8[&1&lExample&r&8]&8&m                            " ]
+
+# The Message announced 30min, 10min, 1min and <10sec before Restarts
+restart-message = "&8&m                         &r&8[&1&lRestart&8]&8&m                         \n \n&8The Proxy is restarting in &1%Restarttime%\n \n&8&m                              &r&8[&1&lRestart&8]&8&m                              "
+
+# The kick message when the Server is restarting
+restart-kick = [ "§8-------------------------------", " ", "§8You got §1§lKicked §8because of a §1§lRestart", " ", "§8Reason: §1§l%Reason%", "§8Restarter: §1§l%Player%" ," ", "§8------------------------------" ]
+
+# The maintenance message
+maintenance = [ "§8§l>> §4mc.example.com §8§l<<" , "§7This network is currently under maintenance", " ", "§7Reason§8: §e%Reason%", " ", "§7You want to contact us?","§7Discord §8§l>> discord.example.com", "§7Homepage §8§l>> www.example.com" ]
