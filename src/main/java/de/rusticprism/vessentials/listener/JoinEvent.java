@@ -4,16 +4,16 @@ import com.velocitypowered.api.event.ResultedEvent;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.LoginEvent;
+import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
+import com.velocitypowered.api.event.player.ServerConnectedEvent;
+import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.friends.OnlinePlayer;
 import de.rusticprism.vessentials.friends.Players;
-import de.rusticprism.vessentials.util.ChatColor;
-import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.Tablist;
+import de.rusticprism.vessentials.util.*;
 import net.kyori.adventure.text.Component;
 
 public class JoinEvent {
@@ -41,6 +41,20 @@ public class JoinEvent {
         if(VEssentials.PLUGIN.messages.tablist) {
             player.sendPlayerListHeaderAndFooter(Component.text(Messages.replacePlayerPlaceHolder(player,VEssentials.PLUGIN.messages.header)),
                     Component.text(Messages.replacePlayerPlaceHolder(player,VEssentials.PLUGIN.messages.footer)));
+        }
+    }
+    @Subscribe
+    public void onResourePack(PlayerResourcePackStatusEvent event) {
+        if(event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED) {
+            event.getPlayer().disconnect(Component.text("§cBitte aktzepiere das Texture Pack!"));
+        }else if(event.getStatus() == (PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD)) {
+            event.getPlayer().disconnect(Component.text("§4§lDer download des Texture Packs ist fehlgeschlagen!"));
+        }
+    }
+    @Subscribe
+    public void onServerChange(ServerPostConnectEvent event) {
+        if(event.getPreviousServer() == null) {
+            event.getPlayer().sendResourcePackOffer(new KreiscraftResourcePack());
         }
     }
     @Subscribe

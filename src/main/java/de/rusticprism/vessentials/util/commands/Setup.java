@@ -6,8 +6,6 @@ import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.configs.GroupConfig;
-import de.rusticprism.vessentials.friends.subcommands.MessageCommand;
-import de.rusticprism.vessentials.friends.subcommands.*;
 import de.rusticprism.vessentials.groups.Groups;
 import de.rusticprism.vessentials.scheduler.TablistScheduler;
 import de.rusticprism.vessentials.util.Messages;
@@ -17,9 +15,9 @@ public class Setup {
     public Groups groups;
     public Setup() {
         new Messages();
-        registerallCommands();
         configs = new Configurations();
         registerAllConfigs();
+        registerallCommands();
     }
     public void registerallCommands() {
         //Kein Bock Friends System weiterzumachen!
@@ -36,6 +34,8 @@ public class Setup {
         VEssentials.PLUGIN.cmdman.registerMain("kickall", new KickallCommand());
         VEssentials.PLUGIN.cmdman.registerMain("vgroup",new GroupCommand());
         VEssentials.PLUGIN.cmdman.registerMain("vmaintenance", new MaintenanceCommand());
+        VEssentials.PLUGIN.cmdman.registerMain("joinme", new JoinmeCommand());
+        VEssentials.PLUGIN.cmdman.registerMain("test", new TestCommand());
     }
     public void registerAllConfigs() {
         groups = new Groups();

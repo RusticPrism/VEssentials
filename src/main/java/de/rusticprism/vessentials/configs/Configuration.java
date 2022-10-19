@@ -18,7 +18,7 @@ public abstract class Configuration {
     private final String name;
     public Configuration(String filename) {
         this.name = filename;
-        file = new File(VEssentials.PLUGIN.path.toFile(),filename + ".json");
+        file = new File(VEssentials.PLUGIN.path.toFile(),"data/" + filename + ".json");
         if(!file.exists()) {
             file.getParentFile().mkdirs();
             try {

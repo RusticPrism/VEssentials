@@ -15,7 +15,6 @@ import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.commands.CommandManager;
 import de.rusticprism.vessentials.util.commands.Setup;
 import net.kyori.adventure.text.Component;
-import net.luckperms.api.LuckPerms;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;

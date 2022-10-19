@@ -23,6 +23,8 @@ public class MessageConfig {
     public String restartkick;
     public String maintenance;
 
+    public String joinme;
+
     public MessageConfig() {
         config = loadConfig();
         loadToVariables();
@@ -98,5 +100,12 @@ public class MessageConfig {
             }
         }
         maintenance = maintenancebuilder.substring(maintenancebuilder.length() - 1);
+        StringBuilder joinmebuilder = new StringBuilder();
+        for(Object str : config.getList("joinme")) {
+            if(str instanceof String) {
+                joinmebuilder.append(str).append("\n");
+            }
+        }
+        joinme = joinmebuilder.substring(joinmebuilder.length() -1);
     }
 }

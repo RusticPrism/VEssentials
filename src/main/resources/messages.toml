@@ -33,3 +33,6 @@ restart-kick = [ "§8-------------------------------", " ", "§8You got §1§lKi
 
 # The maintenance message
 maintenance = [ "§8§l>> §4mc.example.com §8§l<<" , "§7This network is currently under maintenance", " ", "§7Reason§8: §e%Reason%", " ", "§7You want to contact us?","§7Discord §8§l>> discord.example.com", "§7Homepage §8§l>> www.example.com" ]
+
+# The JoinMe Message
+joinme = [ "§8§m------------------| §d§lJoinMe §r§8|§8§m------------------", "§d§l%Player% §r§7is playing on §d§l%server%", "§7Click here to join", "§8§m------------------| §d§lJoinMe §r§8|§8§m------------------"]

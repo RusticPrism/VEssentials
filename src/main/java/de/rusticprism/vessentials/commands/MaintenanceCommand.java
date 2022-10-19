@@ -16,10 +16,9 @@ public class MaintenanceCommand extends EssentialsCommand {
         super("essentials.command.maintenance");
     }
 
-    DataConfig config = (DataConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("data");
-
     @Override
     public void performCommand(CommandSource source, String command, String[] args) {
+        DataConfig config = (DataConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("data");
         if (Permission.hasPermission(source, "essentials.command.maintenance")) {
             if (args.length == 0) {
                 source.sendMessage(Component.text(VEssentials.PLUGIN.messages.maintenance));
