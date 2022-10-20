@@ -19,14 +19,17 @@ public class MessageCommand extends EssentialsCommand {
     public void performCommand(CommandSource source, String command, String[] args) {
         if(source instanceof Player player) {
             if(Permission.hasPermission(player,"essentials.command.msg")) {
-                if(VEssentials.PLUGIN.server.getPlayer(args[0]).isPresent()) {
-                    Player target = VEssentials.PLUGIN.server.getPlayer(args[0]).get();
-                    StringBuilder builder = new StringBuilder();
-                    for(int i =  1; i < args.length; i++) {
-                        builder.append(args[i]).append(" ");
-                    }
-                    target.sendMessage(Messages.prefix.append(Component.text( "§8[§1" + player.getUsername() + " §8-> §1me§8]" + ChatColor.translateAlternateColorCode("&",builder.toString()))));
-                }else player.sendMessage(Messages.prefix.append(Component.text(" §cThis Player isn't online!")));
+                if(args.length >= 2) {
+                    if (VEssentials.PLUGIN.server.getPlayer(args[0]).isPresent()) {
+                        Player target = VEssentials.PLUGIN.server.getPlayer(args[0]).get();
+                        StringBuilder builder = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            builder.append(args[i]).append(" ");
+                        }
+                        player.sendMessage(Messages.prefix.append(Component.text("§8[§1me §8-> §1" + target.getUsername() + "§8]§r" + ChatColor.translateAlternateColorCode("&", builder.toString()))));
+                        target.sendMessage(Messages.prefix.append(Component.text("§8[§1" + player.getUsername() + " §8-> §1me§8]§r" + ChatColor.translateAlternateColorCode("&", builder.toString()))));
+                    } else player.sendMessage(Messages.prefix.append(Component.text(" §cThis Player isn't online!")));
+                }else player.sendMessage(Messages.prefix.append(Component.text("§cYou gave to few arguments!")));
             }else player.sendMessage(Messages.noperms);
         }else source.sendMessage(Messages.nocons);
     }

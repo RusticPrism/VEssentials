@@ -1,11 +1,13 @@
 package de.rusticprism.vessentials.util.commands;
 
+import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.commands.*;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.configs.GroupConfig;
+import de.rusticprism.vessentials.groups.Group;
 import de.rusticprism.vessentials.groups.Groups;
 import de.rusticprism.vessentials.scheduler.TablistScheduler;
 import de.rusticprism.vessentials.util.Messages;
@@ -18,6 +20,13 @@ public class Setup {
         configs = new Configurations();
         registerAllConfigs();
         registerallCommands();
+       if(groups.groups.isEmpty()) {
+           Group player = groups.createGroup("Player");
+           player.setPrefix("§7Player | §7");
+           for(Player player1 : VEssentials.PLUGIN.server.getAllPlayers()) {
+               player.addPlayer(player1.getUsername());
+           }
+       }
     }
     public void registerallCommands() {
         //Kein Bock Friends System weiterzumachen!
@@ -35,7 +44,7 @@ public class Setup {
         VEssentials.PLUGIN.cmdman.registerMain("vgroup",new GroupCommand());
         VEssentials.PLUGIN.cmdman.registerMain("vmaintenance", new MaintenanceCommand());
         VEssentials.PLUGIN.cmdman.registerMain("joinme", new JoinmeCommand());
-        VEssentials.PLUGIN.cmdman.registerMain("test", new TestCommand());
+        //VEssentials.PLUGIN.cmdman.registerMain("test", new TestCommand());
     }
     public void registerAllConfigs() {
         groups = new Groups();

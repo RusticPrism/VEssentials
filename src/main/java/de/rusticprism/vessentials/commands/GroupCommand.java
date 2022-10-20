@@ -5,10 +5,7 @@ import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.groups.Group;
 import de.rusticprism.vessentials.groups.Groups;
-import de.rusticprism.vessentials.util.CompletionSupplier;
-import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.TabCompleter;
+import de.rusticprism.vessentials.util.*;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
 
@@ -53,15 +50,24 @@ public class GroupCommand extends EssentialsCommand {
                     source.sendMessage(Messages.prefix.append(Component.text("§8List of Player in that group: §1" + names.substring(0, names.length() -4) + "§8.")));
                 }
                 case "prefix" -> {
-                    VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setPrefix(args[2]);
+                    StringBuilder prefixbuilder = new StringBuilder();
+                    for(int i = 2; i < args.length; i ++) {
+                        prefixbuilder.append(args[i]).append(" ");
+                    }
+                    VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setPrefix(prefixbuilder.substring(0,prefixbuilder.length() -1));
                     source.sendMessage(Messages.prefix.append(Component.text("§8Successfully set the §1prefix §8of the group §1" + args[1])));
                 }
                 case "suffix" -> {
-                    VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setSuffix(args[2]);
+                    StringBuilder suffixbuilder = new StringBuilder();
+                    for(int i = 2; i < args.length; i ++) {
+                        suffixbuilder.append(args[i]).append(" ");
+                    }
+                    VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setSuffix(suffixbuilder.substring(0,suffixbuilder.length() -1));
                     source.sendMessage(Messages.prefix.append(Component.text("§8Successfully set the §1suffix §8of the group §1" + args[1])));
                 }
                 default -> source.sendMessage(Messages.prefix.append(Component.text("§cYou gave a wrong Argument!")));
             }
+            Tablist.updateTablist();
         }
     }
 
@@ -76,7 +82,7 @@ public class GroupCommand extends EssentialsCommand {
             names.add(player.getUsername());
         }
         return TabCompleter.create()
-                .at(0, CompletionSupplier.contains("create", "addplayer", "list", "prefix", "remove", "removePlayer", "suffix"))
+                .at(0, CompletionSupplier.contains("create", "addplayer", "list", "prefix", "remove", "removeplayer", "suffix"))
                 .at(1, args.length == 0 || args[0].equalsIgnoreCase("create") ? CompletionSupplier.EMPTY : CompletionSupplier.contains(list))
                 .at(2, args.length <= 1 || args[0].equalsIgnoreCase("list") || args[0].equalsIgnoreCase("create") || args[0].equalsIgnoreCase("remove") ? CompletionSupplier.EMPTY :
                         args[0].equalsIgnoreCase("addplayer") ? CompletionSupplier.contains(names) :

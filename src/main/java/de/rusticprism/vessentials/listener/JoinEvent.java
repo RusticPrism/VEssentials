@@ -13,15 +13,17 @@ import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.friends.OnlinePlayer;
 import de.rusticprism.vessentials.friends.Players;
+import de.rusticprism.vessentials.groups.Group;
 import de.rusticprism.vessentials.util.*;
 import net.kyori.adventure.text.Component;
+
+import java.util.concurrent.TimeUnit;
 
 public class JoinEvent {
 
     @Subscribe
     public void onJoin(LoginEvent event) {
         Player player = event.getPlayer();
-        Tablist.updateTablist(player);
         Players.addPlayer(new OnlinePlayer(player));
         BanConfig banConfig = (BanConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("bannedplayers");
         DataConfig dataConfig = (DataConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("data");
@@ -42,6 +44,10 @@ public class JoinEvent {
             player.sendPlayerListHeaderAndFooter(Component.text(Messages.replacePlayerPlaceHolder(player,VEssentials.PLUGIN.messages.header)),
                     Component.text(Messages.replacePlayerPlaceHolder(player,VEssentials.PLUGIN.messages.footer)));
         }
+        if(VEssentials.PLUGIN.setup.groups.getPlayerGroup(player.getUsername()) == null) {
+            VEssentials.PLUGIN.setup.groups.getGroup("Player").addPlayer(player.getUsername());
+        }
+        VEssentials.PLUGIN.server.getScheduler().buildTask(VEssentials.PLUGIN, Tablist::updateTablist).delay(4, TimeUnit.SECONDS).schedule();
     }
     @Subscribe
     public void onResourePack(PlayerResourcePackStatusEvent event) {

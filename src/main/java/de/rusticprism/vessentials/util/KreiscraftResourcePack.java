@@ -16,7 +16,13 @@ public class KreiscraftResourcePack implements ResourcePackInfo {
 
     @Override
     public @Nullable Component getPrompt() {
-        return Component.text("§cTest");
+        return Component.text("""
+                §8§m------------------------§r| §1TexturePack §8|§8§m------------------------\s
+                \s
+                 §8Bitte klicke auf akzeptieren um das Kreiscraft TexturePack herunterzuladen\s
+                 Das Texturepack ist ein  Teil des neuen Plugins Slimefun\s
+                \s
+                 §8§m------------------------§r| §1TexturePack §8|§8§m------------------------""");
     }
 
     @Override

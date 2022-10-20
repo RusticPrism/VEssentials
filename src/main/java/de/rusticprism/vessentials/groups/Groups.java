@@ -1,9 +1,12 @@
 package de.rusticprism.vessentials.groups;
 
+import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Groups {
     public final HashMap<String, Group> groups;
@@ -25,5 +28,15 @@ public class Groups {
 
     public List<Group> getGroups() {
         return groups.values().stream().toList();
+    }
+
+    public Group getPlayerGroup(String player) {
+        Group group = null;
+        for(Map.Entry<String,Group> entry : groups.entrySet()) {
+           if(Arrays.stream(entry.getValue().getPlayers()).toList().contains(player)) {
+               group = entry.getValue();
+           }
+        }
+        return group;
     }
 }
