@@ -106,6 +106,6 @@ public class MessageConfig {
                 joinmebuilder.append(str).append("\n");
             }
         }
-        joinme = joinmebuilder.substring(joinmebuilder.length() -1);
+        joinme = joinmebuilder.substring(0,joinmebuilder.length() -1);
     }
 }
