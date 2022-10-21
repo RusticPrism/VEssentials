@@ -34,9 +34,9 @@ public class JoinEvent {
                     .replace("%Player%",banConfig.config.get(player.getUniqueId().toString() + ".bannedby")))));
         }
         if(dataConfig.maintenance && !Permission.hasPermission(player,"essentials.wartung.bypass")) {
-            event.setResult(ResultedEvent.ComponentResult.denied(Component.text(VEssentials.PLUGIN.messages.maintenance
+            event.setResult(ResultedEvent.ComponentResult.denied(Component.text(ChatColor.translateAlternateColorCode("&", VEssentials.PLUGIN.messages.maintenance
                     .replaceAll("%Reason%", Messages.replace(dataConfig.maintenancereason))
-                    .replaceAll("%Player%", Messages.replace(dataConfig.maintenanceplayer)))));
+                    .replaceAll("%Player%", Messages.replace(dataConfig.maintenanceplayer))))));
         }else if(dataConfig.maintenance) {
             player.sendMessage(Messages.prefix.append(Component.text("§8The network ist currently in §1maintenance. \n§8You can still join because you are §1permitted §8to!")));
         }

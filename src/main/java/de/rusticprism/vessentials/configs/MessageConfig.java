@@ -22,8 +22,10 @@ public class MessageConfig {
     public String restartmessage;
     public String restartkick;
     public String maintenance;
-
     public String joinme;
+    public String fewArgs;
+    public String manyArgs;
+    public String maintenancemotd;
 
     public MessageConfig() {
         config = loadConfig();
@@ -71,6 +73,8 @@ public class MessageConfig {
         noperms = config.getString("noperms");
         motd = config.getString("motdline1") + "\n" + config.getString("motdline2");
         tablist = config.getBoolean("tablist");
+        fewArgs = config.getString("ToFewArgs");
+        manyArgs = config.getString("ToManyArgs");
         StringBuilder footerbuilder = new StringBuilder();
         for(Object str : config.getList("footer")) {
             if(str instanceof String) {
@@ -99,7 +103,8 @@ public class MessageConfig {
                 maintenancebuilder.append(str).append("\n");
             }
         }
-        maintenance = maintenancebuilder.substring(maintenancebuilder.length() - 1);
+        maintenance = maintenancebuilder.substring(0, maintenancebuilder.length() - 1);
+        System.out.println(maintenance);
         StringBuilder joinmebuilder = new StringBuilder();
         for(Object str : config.getList("joinme")) {
             if(str instanceof String) {
@@ -107,5 +112,6 @@ public class MessageConfig {
             }
         }
         joinme = joinmebuilder.substring(0,joinmebuilder.length() -1);
+        maintenancemotd = config.getString("MaintenanceMotd1") + "\n" + config.getString("MaintenanceMotd2");
     }
 }

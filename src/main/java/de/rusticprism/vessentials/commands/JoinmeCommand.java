@@ -2,15 +2,15 @@ package de.rusticprism.vessentials.commands;
 
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
-import com.velocitypowered.api.proxy.player.ResourcePackInfo;
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.util.KreiscraftResourcePack;
+import de.rusticprism.vessentials.util.ChatColor;
 import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.TabCompleter;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 
 public class JoinmeCommand extends EssentialsCommand {
     public JoinmeCommand() {
@@ -23,9 +23,10 @@ public class JoinmeCommand extends EssentialsCommand {
             if (Permission.hasPermission(source, getPermission())) {
                 if (args.length == 0) {
                     String servername = player.getCurrentServer().get().getServerInfo().getName();
-                    VEssentials.PLUGIN.server.getAllPlayers().forEach(player1 -> player1.sendMessage(Component.text(VEssentials.PLUGIN.messages.joinme
-                            .replaceAll("%Player%",player.getUsername()).replaceAll("%server%", servername))
-                            .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND,"joinme " + servername))));
+                    VEssentials.PLUGIN.server.getAllPlayers().forEach(player1 -> player1.sendMessage(Component.text(ChatColor.translateAlternateColorCode("&",VEssentials.PLUGIN.messages.joinme
+                            .replaceAll("%Player%",player.getUsername()).replaceAll("%server%", servername)))
+                            .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND,"joinme " + servername))
+                            .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT,Component.text("§8Click here to join")))));
                 }else {
                     if(VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
                         player.createConnectionRequest(VEssentials.PLUGIN.server.getServer(args[0]).get());

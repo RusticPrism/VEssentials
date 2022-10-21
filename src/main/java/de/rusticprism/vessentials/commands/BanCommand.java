@@ -53,6 +53,6 @@ public class BanCommand extends EssentialsCommand {
         for(Player player : VEssentials.PLUGIN.server.getAllPlayers()) {
             names.add(player.getUsername());
         }
-        return TabCompleter.create().from(0, CompletionSupplier.contains(names)).from(1,CompletionSupplier.contains("[Reason]"));
+        return TabCompleter.create().at(0, CompletionSupplier.contains(names)).from(1,CompletionSupplier.contains("[Reason]"));
     }
 }

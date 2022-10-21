@@ -30,8 +30,8 @@ public class FriendsCommand extends EssentialsCommand {
     public TabCompleter complete(String[] args) {
         if(args.length != 0) {
             if (args[0].equalsIgnoreCase("status")) {
-                return TabCompleter.create().from(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status")).from(1, CompletionSupplier.contains("[Status]"));
-            }else return TabCompleter.create().from(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status")).from(1,CompletionSupplier.contains("[Player]"));
-        }else return TabCompleter.create().from(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status"));
+                return TabCompleter.create().at(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status")).from(1, CompletionSupplier.contains("[Status]"));
+            }else return TabCompleter.create().at(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status")).from(1,CompletionSupplier.contains("[Player]"));
+        }else return TabCompleter.create().at(0, CompletionSupplier.contains("add","remove","list", "accept","decline","msg","status"));
     }
 }

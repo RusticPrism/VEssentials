@@ -55,7 +55,7 @@ public class ServerCommand extends EssentialsCommand {
 
     @Override
     public TabCompleter complete(String[] args) {
-        return TabCompleter.create().from(0, CompletionSupplier.contains(VEssentials.PLUGIN.server.getConfiguration().getServers().keySet()));
+        return TabCompleter.create().at(0, CompletionSupplier.contains(VEssentials.PLUGIN.server.getConfiguration().getServers().keySet()));
     }
     public Component formatServer(RegisteredServer server, Player player) {
         Component component = Component.text(server.getServerInfo().getName());

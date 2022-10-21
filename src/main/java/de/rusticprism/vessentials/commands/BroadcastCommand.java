@@ -41,7 +41,7 @@ public class BroadcastCommand extends EssentialsCommand {
     public TabCompleter complete(String[] args) {
         List<String> servers = new java.util.ArrayList<>(VEssentials.PLUGIN.server.getConfiguration().getServers().keySet().stream().toList());
         servers.add("all");
-        return TabCompleter.create().from(0, CompletionSupplier.contains(servers))
+        return TabCompleter.create().at(0, CompletionSupplier.contains(servers))
                 .from(1, CompletionSupplier.contains("[Message]"));
     }
 }

@@ -13,7 +13,7 @@ public class TabCompleter {
     }
 
     private final Map<Integer, CompletionSupplier> suppliers = new HashMap<>();
-    private final int from = Integer.MAX_VALUE;
+    private int from = Integer.MAX_VALUE;
 
 
     private TabCompleter() {
@@ -43,7 +43,7 @@ public class TabCompleter {
      */
     public TabCompleter from(int position, CompletionSupplier supplier) {
         this.suppliers.put(position, supplier);
-        //this.from = position;
+        this.from = position;
         return this;
     }
 

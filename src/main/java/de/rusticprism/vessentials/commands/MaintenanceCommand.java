@@ -51,6 +51,6 @@ public class MaintenanceCommand extends EssentialsCommand {
 
     @Override
     public TabCompleter complete(String[] args) {
-        return TabCompleter.create().at(0, CompletionSupplier.contains("Construction", "Update", "DDOSAttacks", "[Reason]"));
+        return TabCompleter.create().from(0, CompletionSupplier.contains("Construction", "Update", "DDOSAttacks", "[Reason]"));
     }
 }

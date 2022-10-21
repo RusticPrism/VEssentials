@@ -40,7 +40,7 @@ public class MessageCommand extends EssentialsCommand {
         for(Player player : VEssentials.PLUGIN.server.getAllPlayers()) {
             playernames.add(player.getUsername());
         }
-        return TabCompleter.create().from(0, CompletionSupplier.contains(playernames))
+        return TabCompleter.create().at(0, CompletionSupplier.contains(playernames))
                 .from(1,CompletionSupplier.contains("[Message]"));
     }
 }
