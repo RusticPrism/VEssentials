@@ -20,7 +20,7 @@ public class JoinmeCommand extends EssentialsCommand {
     @Override
     public void performCommand(CommandSource source, String command, String[] args) {
         if (source instanceof Player player) {
-            if (Permission.hasPermission(source, getPermission())) {
+            if (Permission.hasPermission(source, "essentials.command.joinme")) {
                 if (args.length == 0) {
                     String servername = player.getCurrentServer().get().getServerInfo().getName();
                     VEssentials.PLUGIN.server.getAllPlayers().forEach(player1 -> player1.sendMessage(Component.text(ChatColor.translateAlternateColorCode("&",VEssentials.PLUGIN.messages.joinme

@@ -1,6 +1,5 @@
 package de.rusticprism.vessentials.util.commands;
 
-import com.velocitypowered.api.command.Command;
 import com.velocitypowered.api.command.CommandSource;
 import de.rusticprism.vessentials.util.TabCompleter;
 
