@@ -3,6 +3,7 @@ package de.rusticprism.vessentials.listener;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;
+import com.velocitypowered.api.util.ModInfo;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.commands.MaintenanceCommand;
 import de.rusticprism.vessentials.configs.DataConfig;

@@ -13,6 +13,7 @@ import java.util.UUID;
 public class Tablist {
 
     public static void updateTablist() {
+        /*
         for (Player player : VEssentials.PLUGIN.server.getAllPlayers()) {
             for (Player player1 : VEssentials.PLUGIN.server.getAllPlayers()) {
                 if (!player.getTabList().containsEntry(player1.getUniqueId())) {
@@ -43,5 +44,6 @@ public class Tablist {
                 }
             }
         }
+         */
     }
 }
