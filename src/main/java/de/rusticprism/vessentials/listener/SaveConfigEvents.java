@@ -18,7 +18,7 @@ public class SaveConfigEvents {
         for(OnlinePlayer player : Players.getPlayers()) {
             player.getConfig().saveConfig();
         }
-        for(Configuration configuration : VEssentials.PLUGIN.setup.configs.configs) {
+        for(Configuration configuration : VEssentials.PLUGIN.setup.configs.configs.values()) {
             configuration.saveConfig();
         }
 
@@ -27,7 +27,7 @@ public class SaveConfigEvents {
     public void onReload(ProxyReloadEvent e) {
         for(OnlinePlayer player : Players.getPlayers()) {
             player.getConfig().saveConfig();
-            for(Configuration configuration : VEssentials.PLUGIN.setup.configs.configs) {
+            for(Configuration configuration : VEssentials.PLUGIN.setup.configs.configs.values()) {
                 configuration.saveConfig();
             }
         }

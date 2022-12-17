@@ -1,8 +1,6 @@
 package de.rusticprism.vessentials.commands;
 
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.proxy.Player;
-import com.velocitypowered.api.util.UuidUtils;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.util.CompletionSupplier;
@@ -24,7 +22,7 @@ public class UnbanCommand extends EssentialsCommand {
     public void performCommand(CommandSource source, String command, String[] args) {
             if (Permission.hasPermission(source, "essentials.command.unban")) {
                 if(args.length == 1) {
-                    BanConfig config = (BanConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("bannedplayers");
+                    BanConfig config = VEssentials.PLUGIN.setup.configs.getConfig(BanConfig.class);
                    if(config.isBannedName(args[0])) {
                        config.unbanPlayerName(args[0]);
                        source.sendMessage(Messages.prefix.append(Component.text("§8Successfully unbanned the Player §1" + args[0] + "§8.")));
@@ -35,7 +33,7 @@ public class UnbanCommand extends EssentialsCommand {
 
     @Override
     public TabCompleter complete(String[] args) {
-        BanConfig config = (BanConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("bannedplayers");
+        BanConfig config = VEssentials.PLUGIN.setup.configs.getConfig(BanConfig.class);
         List<String> names = new ArrayList<>();
         for(String uuid : config.getBannedPlayers()) {
             names.add(config.config.get(uuid + ".name"));

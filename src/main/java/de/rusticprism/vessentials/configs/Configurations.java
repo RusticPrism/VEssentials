@@ -1,23 +1,16 @@
 package de.rusticprism.vessentials.configs;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.rusticprism.vessentials.util.NameableStorage;
 
 public class Configurations {
-    public final List<Configuration> configs;
+    public final NameableStorage<Configuration> configs;
     public Configurations() {
-        configs = new ArrayList<>();
+        configs = new NameableStorage<>(Configuration::getName);
     }
     public void register(Configuration configuration) {
         configs.add(configuration);
     }
-    public Configuration getConfigByName(String name) {
-        Configuration configuration = null;
-        for(Configuration config : configs) {
-            if(config.getName().equalsIgnoreCase(name)) {
-                configuration = config;
-            }
-        }
-        return configuration;
+    public <C extends Configuration> C getConfig(Class<C> class_) {
+        return configs.get(class_);
     }
 }

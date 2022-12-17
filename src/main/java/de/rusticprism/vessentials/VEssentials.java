@@ -12,6 +12,7 @@ import de.rusticprism.vessentials.listener.JoinEvent;
 import de.rusticprism.vessentials.listener.SaveConfigEvents;
 import de.rusticprism.vessentials.listener.ServerPingEvent;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import de.rusticprism.vessentials.util.commands.CommandManager;
 import de.rusticprism.vessentials.util.commands.Setup;
 import net.kyori.adventure.text.Component;
@@ -35,7 +36,6 @@ public class VEssentials {
     public final ProxyServer server;
     public static VEssentials PLUGIN;
     public final MessageConfig messages;
-    public final Component arguments;
     public final Path path;
     public final CommandManager cmdman;
     public final Setup setup;
@@ -49,7 +49,6 @@ public class VEssentials {
         this.cmdman = new CommandManager();
         this.messages = new MessageConfig();
         this.setup = new Setup();
-        this.arguments = Messages.prefix.append(Component.text("§cYou gave to many arguments!"));
     }
 
 

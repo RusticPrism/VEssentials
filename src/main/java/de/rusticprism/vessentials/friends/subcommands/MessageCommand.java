@@ -6,6 +6,7 @@ import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.util.ChatColor;
 import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import net.kyori.adventure.text.Component;
 
 public class MessageCommand  {
@@ -19,7 +20,7 @@ public class MessageCommand  {
                        builder.append(args[i]).append(" ");
                    }
                    player.sendMessage(Component.text("§8[Message] §8You send a Message to §1" + VEssentials.PLUGIN.server.getPlayer(args[0]).get().getUsername()));
-                   VEssentials.PLUGIN.server.getPlayer(args[0]).get().sendMessage(Component.text("§8[Message] §1" + player.getUsername() + " §8send you a Message >> §1" + ChatColor.translateAlternateColorCode("&", builder.toString())));
+                   VEssentials.PLUGIN.server.getPlayer(args[0]).get().sendMessage(Component.text("§8[Message] §1" + player.getUsername() + " §8send you a Message >> §1" + PlaceHolders.replaceAsComponent(builder.toString())));
                }
             }else player.sendMessage(Messages.noperms);
         }else source.sendMessage(Messages.nocons);

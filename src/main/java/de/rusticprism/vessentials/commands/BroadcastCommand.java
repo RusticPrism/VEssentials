@@ -24,15 +24,15 @@ public class BroadcastCommand extends EssentialsCommand {
                         for (int i = 1; i < args.length; i++) {
                             broadcast.append(args[i]).append(" ");
                         }
-                        VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(Component.text("§8[§1Broadcast§8]§1" + ChatColor.translateAlternateColorCode("&", broadcast.toString())));
+                        VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(PlaceHolders.replaceAsComponent("§8[§1Broadcast§8]§r" + broadcast));
                     } else if (args[0].equalsIgnoreCase("all")) {
                         StringBuilder broadcast = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             broadcast.append(args[i]).append(" ");
                         }
-                        VEssentials.PLUGIN.server.sendMessage(Component.text("§8[§1Broadcast§8]§1" + ChatColor.translateAlternateColorCode("&", broadcast.toString())));
+                        VEssentials.PLUGIN.server.sendMessage(PlaceHolders.replaceAsComponent("§8[§1Broadcast§8]§r" + broadcast));
                     } else player.sendMessage(Messages.prefix.append(Component.text("§cInvalid Arguments!")));
-                } else player.sendMessage(Messages.prefix.append(Component.text("§cTo few Arguments!")));
+                } else player.sendMessage(Messages.prefix.append(Component.text(VEssentials.PLUGIN.messages.manyArgs)));
             } else player.sendMessage(Messages.noperms);
         } else source.sendMessage(Messages.nocons);
     }

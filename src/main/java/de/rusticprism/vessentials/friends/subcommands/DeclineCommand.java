@@ -17,7 +17,7 @@ public class DeclineCommand  {
                         Players.getPlayer(player).getRequests().remove(VEssentials.PLUGIN.server.getPlayer(args[0]).get());
                         player.sendMessage(Messages.prefix.append(Component.text(  "§8Declined the Friend Request from §1" + VEssentials.PLUGIN.server.getPlayer(args[0]).get().getUsername() + " §8!")));
                     }else player.sendMessage(Messages.prefix.append(Component.text( "§cCouldn't decline the Friend Request because this Player is Offline (Fixed soon)")));
-                }else player.sendMessage(VEssentials.PLUGIN.arguments);
+                }else player.sendMessage(Component.text(VEssentials.PLUGIN.messages.manyArgs));
             }else player.sendMessage(Messages.noperms);
         }else source.sendMessage(Messages.nocons);
     }

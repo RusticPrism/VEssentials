@@ -36,7 +36,7 @@ public class BanCommand extends EssentialsCommand {
                             builder.append(args[i]).append(" ");
                         }
                     }
-                    BanConfig config = (BanConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("bannedplayers");
+                    BanConfig config = VEssentials.PLUGIN.setup.configs.getConfig(BanConfig.class);
                     config.banPlayer(target,builder.toString(),"Lifetime",source instanceof Player player ? player.getUsername() : "CONSOLE");
                     target.disconnect(Component.text(VEssentials.PLUGIN.messages.banmessage
                             .replace("%Player%",source instanceof Player player ? player.getUsername() : "CONSOLE")

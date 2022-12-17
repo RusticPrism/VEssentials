@@ -2,6 +2,7 @@ package de.rusticprism.vessentials.configs;
 
 import com.moandjiezana.toml.Toml;
 import de.rusticprism.vessentials.VEssentials;
+import de.rusticprism.vessentials.util.ChatColor;
 
 import java.io.File;
 import java.io.IOException;

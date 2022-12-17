@@ -58,4 +58,13 @@ public class BanConfig extends Configuration{
             }
         }
     }
+    public String getReason(Player player) {
+        return config.get(player.getUniqueId().toString() + ".reason");
+    }
+    public String getTime(Player player) {
+        return config.get(player.getUniqueId().toString() + ".time");
+    }
+    public String getBannedBy(Player player) {
+        return config.get(player.getUniqueId().toString() + ".bannedby");
+    }
 }

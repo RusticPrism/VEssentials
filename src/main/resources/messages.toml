@@ -2,45 +2,45 @@
 config-version = "1.0"
 
 # The Prefix of this Plugin
-prefix = "&1VEssentials &7>>"
+prefix = "<gradient:light_purple:dark_purple>VEssentials <gray>>>"
 
 # Message when you don´t have the Permission for something
-noperms = "%Prefix% &cYou don´t have the Permission to perform that Command!"
+noperms = "%plugin_prefix% <red>You don´t have the Permission to perform that Command!"
 
 # Message if the action needs you to be a Player
-nocons = "%Prefix% &cYou have to be a Player to perform that Command!"
+nocons = "%plugin_prefix% <red>You have to be a Player to perform that Command!"
 
 # The to few and to many Arguments Messages
-ToFewArgs = "&cYou provided to few Arguments!"
-ToManyArgs = "&cYou gave to many Arguments!"
+ToFewArgs = "%plugin_prefix% <red>You provided to few Arguments!"
+ToManyArgs = "%plugin_prefix% <red>You gave to many Arguments!"
 
 # The ban and kick Message when you get banned/kicked
-banmessage = [ "&8-------------------------------", " ", "&8You got &1&lBanned &8by &1&l%Player%", " ", "&8Reason: &1&l%Reason%", " ", "&8Duration: &1&l%Duration%", " ", "&8------------------------------" ]
-kickmessage = [ "&8-------------------------------", " ", "&8You got &1&lKicked &8by &1&l%Player%", " ", "&8Reason: &1&l%Reason%", " ", "&8------------------------------" ]
+banmessage = [ "<dark_gray>-------------------------------", " ", "<dark_gray>You got <dark_blue><b>banned <reset><dark_gray>by <dark_gray><b>%player_name%", " ", "<dark_gray>reason: <dark_blue><b>%player_banned_reason%", " ", "<dark_gray>duration: <dark_blue><b>%player_banned_time%", " ", "<dark_gray>------------------------------" ]
+kickmessage = [ "<dark_gray>-------------------------------", " ", "<dark_gray>You got <dark_blue><b>kicked <reset><dark_gray>by <dark_gray><b>%player_name%", " ", "<dark_gray>reason: <dark_blue><b>%player_kicked_reason%", " ", "<dark_gray>------------------------------" ]
 
 # Change the Motd here
-motdline1 = "&e-&6*&e-&6*&e-&6*&e-&6*&e- &6&lThe Example Network &e-&6*&e-&6*&e-&6*&e-&6*&e-"
-motdline2 = " &6&l| &e Sub Line  &6&l| &e  mc.example.com    &6&l| &eSub Line &6&l|"
+motdline1 = " <gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>- <dark_blue><b>The Example Network <reset><gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-"
+motdline2 = " <dark_gray><b>| <reset><dark_blue> Sub Line  <dark_gray><b>| <dark_blue>  mc.example.com    <dark_gray><b>| <reset><dark_blue>Sub Line <dark_gray><b>|"
 
 # Change MaintenanceMotd here
-MaintenanceMotd1 = "&e-&6*&e-&6*&e-&6*&e-&6*&e- &6&lThe Example Network &e-&6*&e-&6*&e-&6*&e-&6*&e-"
-MaintenanceMotd2 = "&6&l| &cMaintenance  &6&l| &emc.example.com &6&l| &cMaintenance &6&l|"
+MaintenanceMotd1 = "   <gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>- <dark_blue><b>The Example Network <reset><gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-<dark_gray>*<gray>-"
+MaintenanceMotd2 = " <dark_gray><b>| <reset><red>Maintenance<dark_gray><b> |<dark_blue> mc.example.com <dark_gray><b>| <reset><red>Maintenance<dark_gray><b> |"
 
-# Enable/Disable the Tablist here
+# Enable/Disable the GlobalTablist here
 tablist = true
 
 # Set the Global Tablist here
-header = [ "&8&m                              &r&8[&1&lExample&r&8]&8&m                            ", "&8Welcome &1%Player% &8on &1mc.example.net" , " ", "&8You´re currently connected to &1%Server%" ]
-footer = [" &8Time: &1%Time%", "&8You´re Ping: &1%Ping%", "&8Discord: &1discord.example.com", "&8&m                              &r&8[&1&lExample&r&8]&8&m                            " ]
+header = [ "<dark_gray><st>                              <reset><dark_gray>[<dark_blue><b>Example<reset><dark_gray>]<st>                            ", "<dark_gray>Welcome <dark_blue>%player_name% <dark_gray>on <dark_blue>mc.example.net" , " ", "<dark_gray>You´re currently connected to <dark_blue>%player_server%" ]
+footer = [" <dark_gray>Time: <dark_blue>%sytem_time%", "<dark_gray>You´re Ping: <dark_blue>%player_ping%", "<dark_gray>Discord: <dark_blue>discord.example.com", "<dark_gray><st>                              <reset><dark_gray>[<dark_blue><b>Example<reset><dark_gray>]<st>                            " ]
 
 # The Message announced 30min, 10min, 1min and <10sec before Restarts
-restart-message = "&8&m                         &r&8[&1&lRestart&8]&8&m                         \n \n&8The Proxy is restarting in &1%Restarttime%\n \n&8&m                              &r&8[&1&lRestart&8]&8&m                              "
+restart-message = "<dark_gray><st>                         <reset><dark_gray>[<dark_blue><b>Restart<dark_gray>]<st>                         \n \n&8The Proxy is restarting in &1%Restarttime% <newline><newline> <dark_gray><st>                              <reset><dark_gray>[<dark_blue><b>Restart<dark_gray>]<st>                              "
 
 # The kick message when the Server is restarting
-restart-kick = [ "&8-------------------------------", " ", "&8You got &1&lKicked &8because of a &1&lRestart", " ", "&8Reason: &1&l%Reason%", "&8Restarter: &1&l%Player%" ," ", "&8------------------------------" ]
+restart-kick = [ "<dark_gray>-------------------------------", " ", "<dark_gray>You got <dark_blue><b>kicked <reset><dark_gray>because of a <dark_blue><b>restart", " ", "<dark_gray>Reason: <dark_blue><b>%Reason%", "<dark_gray>Restarter: <dark_blue><b>%player_name%" ," ", "<dark_gray>------------------------------" ]
 
 # The maintenance message
-maintenance = [ "&8&l>> &4mc.example.com &8&l<<", "&7This network is currently under maintenance", " ", "&7Reason&8: &e%Reason%", " ", "&7You want to contact us?", "&7Discord &8&l>> discord.example.com", "&7Homepage &8&l>> www.example.com" ]
+maintenance = [ "<dark_gray><b>>> <dark_blue>mc.example.com <dark_gray><b><<", "<gray>This network is currently under maintenance", " ", "<dark_gray>Reason: <dark_blue>%Reason%", " ", "<dark_gray>You want to contact us?", "<dark_gray>Discord >> <dark_blue>discord.example.com", "<dark_gray>Homepage >> <dark_blue>www.example.com" ]
 
 # The JoinMe Message
-joinme = [ "&8&m                    &r&8[&d&lJoinMe&r&8]&8&m                    ", "&d&l%Player% &r&7is playing on &d&l%server%", "&7Click here to join", "&8&m                    &r&8[&d&lJoinMe&r&8]&8&m                    "]
+joinme = [ "<dark_gray><st>                    <reset><dark_gray>[<dark_blue><b>JoinMe<reset><dark_gray>]<st>                    ", "<dark_blue><b>%player_name% <reset><dark_gray>is playing on <dark_blue><b>%player_server%", "<dark_gray>Click here to join", "<dark_gray><st>                    <reset><dark_gray>[<dark_blue><b>JoinMe<reset><dark_gray>]<dark_gray><st>                    "]

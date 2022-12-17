@@ -4,12 +4,11 @@ import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.configs.DataConfig;
-import de.rusticprism.vessentials.util.CompletionSupplier;
-import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.TabCompleter;
+import de.rusticprism.vessentials.util.*;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 
 public class MaintenanceCommand extends EssentialsCommand {
     public MaintenanceCommand() {
@@ -18,10 +17,10 @@ public class MaintenanceCommand extends EssentialsCommand {
 
     @Override
     public void performCommand(CommandSource source, String command, String[] args) {
-        DataConfig config = (DataConfig) VEssentials.PLUGIN.setup.configs.getConfigByName("data");
+        DataConfig config = VEssentials.PLUGIN.setup.configs.getConfig(DataConfig.class);
         if (Permission.hasPermission(source, "essentials.command.maintenance")) {
             if (args.length == 0) {
-                source.sendMessage(Component.text(VEssentials.PLUGIN.messages.maintenance));
+                source.sendMessage(PlaceHolders.replaceAsComponent(VEssentials.PLUGIN.messages.maintenance));
                 if (config.maintenance) {
                     config.maintenance = false;
                     source.sendMessage(Messages.prefix.append(Component.text("§8Successfully §1disabled §8the maintenance mode!")));

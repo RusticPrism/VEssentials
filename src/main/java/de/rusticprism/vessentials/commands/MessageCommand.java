@@ -26,8 +26,8 @@ public class MessageCommand extends EssentialsCommand {
                         for (int i = 1; i < args.length; i++) {
                             builder.append(args[i]).append(" ");
                         }
-                        player.sendMessage(Messages.prefix.append(Component.text("§8[§1me §8-> §1" + target.getUsername() + "§8]§r" + ChatColor.translateAlternateColorCode("&", builder.toString()))));
-                        target.sendMessage(Messages.prefix.append(Component.text("§8[§1" + player.getUsername() + " §8-> §1me§8]§r" + ChatColor.translateAlternateColorCode("&", builder.toString()))));
+                        player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("§8[§1me §8-> §1" + target.getUsername() + "§8]§r" + builder)));
+                        target.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("§8[§1" + player.getUsername() + " §8-> §1me§8]§r" + builder)));
                     } else player.sendMessage(Messages.prefix.append(Component.text(" §cThis Player isn't online!")));
                 }else player.sendMessage(Messages.prefix.append(Component.text("§cYou gave to few arguments!")));
             }else player.sendMessage(Messages.noperms);

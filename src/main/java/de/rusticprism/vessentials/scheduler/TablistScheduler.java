@@ -4,6 +4,7 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import de.rusticprism.vessentials.util.Tablist;
 import net.kyori.adventure.text.Component;
 
@@ -16,8 +17,8 @@ public class TablistScheduler {
                         if(player.getCurrentServer().isPresent() && (player.getCurrentServer().get().getServerInfo().getName().equals("lobby") || player.getCurrentServer().get().getServerInfo().getName().equals("survival"))) {
                             return;
                         }
-                            player.sendPlayerListHeaderAndFooter(Component.text(Messages.replacePlayerPlaceHolder(player, VEssentials.PLUGIN.messages.header)),
-                                    Component.text(Messages.replacePlayerPlaceHolder(player, VEssentials.PLUGIN.messages.footer)));
+                            player.sendPlayerListHeaderAndFooter(PlaceHolders.replaceAsComponent(VEssentials.PLUGIN.messages.header,player),
+                                    PlaceHolders.replaceAsComponent(VEssentials.PLUGIN.messages.footer,player));
                     }
                 }).repeat(1L, TimeUnit.SECONDS)
                     .schedule();

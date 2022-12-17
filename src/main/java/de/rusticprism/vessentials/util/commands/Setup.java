@@ -11,14 +11,16 @@ import de.rusticprism.vessentials.groups.Group;
 import de.rusticprism.vessentials.groups.Groups;
 import de.rusticprism.vessentials.scheduler.TablistScheduler;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 
 public class Setup {
     public Configurations configs;
     public Groups groups;
     public Setup() {
-        new Messages();
         configs = new Configurations();
         registerAllConfigs();
+        new PlaceHolders(VEssentials.PLUGIN, this);
+        new Messages();
         registerallCommands();
        if(groups.groups.isEmpty()) {
            Group player = groups.createGroup("Player");
