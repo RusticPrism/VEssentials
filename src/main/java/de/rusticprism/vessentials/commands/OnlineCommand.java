@@ -31,7 +31,7 @@ public class OnlineCommand extends EssentialsCommand {
                             source.sendMessage(Messages.prefix.append(Component.text("§cCouldn't get Server information! Server is maybe offline!")));
                         }
                     }else source.sendMessage(Messages.prefix.append(Component.text("§cThis server doesn't exist!")));
-                }else source.sendMessage(Component.text(VEssentials.PLUGIN.messages.manyArgs));
+                }else source.sendMessage(Messages.toManyArgs);
             }else source.sendMessage(Messages.noperms);
     }
 

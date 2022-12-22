@@ -47,7 +47,7 @@ public class ServerCommand extends EssentialsCommand {
                             player.sendMessage(Messages.prefix.append(Component.text("§8Trying to connect to §1" + server.getServerInfo().getName() + "§8...")));
                             player.createConnectionRequest(server).fireAndForget();
                         }
-                    }else player.sendMessage(Component.text(VEssentials.PLUGIN.messages.manyArgs));
+                    }else player.sendMessage(Messages.toManyArgs);
                 }else player.sendMessage(Messages.prefix.append(Component.text("§cYou are on no server!")));
             }else player.sendMessage(Messages.noperms);
         }else source.sendMessage(Messages.nocons);

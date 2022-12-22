@@ -31,9 +31,6 @@ public class Setup {
        }
     }
     public void registerallCommands() {
-        //Kein Bock Friends System weiterzumachen!
-        // iwann vllt!
-        // VEssentials.PLUGIN.cmdman.registerMain("friends",new FriendsCommand(),"f");
         VEssentials.PLUGIN.cmdman.registerMain("message", new de.rusticprism.vessentials.commands.MessageCommand(),"msg");
         VEssentials.PLUGIN.cmdman.registerMain("online", new OnlineCommand(),"glist", "vlist");
         VEssentials.PLUGIN.cmdman.registerMain("broadcast", new BroadcastCommand(),"shout", "alert");
@@ -46,12 +43,11 @@ public class Setup {
         VEssentials.PLUGIN.cmdman.registerMain("vgroup",new GroupCommand());
         VEssentials.PLUGIN.cmdman.registerMain("vmaintenance", new MaintenanceCommand());
         VEssentials.PLUGIN.cmdman.registerMain("joinme", new JoinmeCommand());
-        //VEssentials.PLUGIN.cmdman.registerMain("test", new TestCommand());
     }
     public void registerAllConfigs() {
         groups = new Groups();
         configs.register(new BanConfig());
-        configs.register(new GroupConfig(groups));
+        //configs.register(new GroupConfig(groups));
         configs.register(new DataConfig());
     }
     public void registerScheduler() {

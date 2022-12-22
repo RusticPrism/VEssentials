@@ -19,7 +19,7 @@ public class JoinmeCommand extends EssentialsCommand {
         if (source instanceof Player player) {
             if (Permission.hasPermission(source, "essentials.command.joinme")) {
                 if (args.length == 0) {
-                    VEssentials.PLUGIN.server.getAllPlayers().forEach(player1 -> player1.sendMessage(PlaceHolders.replaceAsComponent(VEssentials.PLUGIN.messages.joinme,player)
+                    VEssentials.PLUGIN.server.getAllPlayers().forEach(player1 -> player1.sendMessage(PlaceHolders.translate("server-joinme-message",player)
                             .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND,PlaceHolders.replacePlaceHolders("joinme %player_server%",player)))
                             .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT,Component.text("§8Click here to join")))));
                 }else {

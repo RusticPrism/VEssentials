@@ -25,7 +25,6 @@ public class GroupConfig extends Configuration{
         for (String player : group.getPlayers()) {
             players.append(player).append(" ");
         }
-        System.out.println("Test");
         config.put(group.getName() + ".prefix",group.getPrefix());
         config.put(group.getName() + ".suffix", group.getSuffix());
         config.put(group.getName() + ".player", players.substring(0,players.length() -1));

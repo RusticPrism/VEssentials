@@ -1,11 +1,9 @@
 package de.rusticprism.vessentials.util;
 
-import com.google.common.hash.HashCode;
 import com.velocitypowered.api.proxy.player.ResourcePackInfo;
 import net.kyori.adventure.text.Component;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 
 public class KreiscraftResourcePack implements ResourcePackInfo {

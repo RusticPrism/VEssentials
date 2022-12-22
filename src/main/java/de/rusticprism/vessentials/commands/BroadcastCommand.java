@@ -6,6 +6,7 @@ import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.util.*;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
 import java.util.List;
 
@@ -24,15 +25,15 @@ public class BroadcastCommand extends EssentialsCommand {
                         for (int i = 1; i < args.length; i++) {
                             broadcast.append(args[i]).append(" ");
                         }
-                        VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(PlaceHolders.replaceAsComponent("§8[§1Broadcast§8]§r" + broadcast));
+                        VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>Broadcast<dark_gray>]<reset> " + broadcast));
                     } else if (args[0].equalsIgnoreCase("all")) {
                         StringBuilder broadcast = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             broadcast.append(args[i]).append(" ");
                         }
-                        VEssentials.PLUGIN.server.sendMessage(PlaceHolders.replaceAsComponent("§8[§1Broadcast§8]§r" + broadcast));
+                        VEssentials.PLUGIN.server.sendMessage(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>Broadcast<dark_gray>]<reset>" + broadcast));
                     } else player.sendMessage(Messages.prefix.append(Component.text("§cInvalid Arguments!")));
-                } else player.sendMessage(Messages.prefix.append(Component.text(VEssentials.PLUGIN.messages.manyArgs)));
+                } else player.sendMessage(Messages.toManyArgs);
             } else player.sendMessage(Messages.noperms);
         } else source.sendMessage(Messages.nocons);
     }

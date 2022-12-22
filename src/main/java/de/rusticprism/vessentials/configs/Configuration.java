@@ -3,14 +3,14 @@ package de.rusticprism.vessentials.configs;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.friends.Friend;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Configuration {
     public File file;

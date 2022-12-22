@@ -67,7 +67,6 @@ public class GroupCommand extends EssentialsCommand {
                 }
                 default -> source.sendMessage(Messages.prefix.append(Component.text("§cYou gave a wrong Argument!")));
             }
-            Tablist.updateTablist();
         }
     }
 

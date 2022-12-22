@@ -7,18 +7,23 @@ import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import de.rusticprism.vessentials.configs.MessageConfig;
 import de.rusticprism.vessentials.listener.JoinEvent;
 import de.rusticprism.vessentials.listener.SaveConfigEvents;
 import de.rusticprism.vessentials.listener.ServerPingEvent;
-import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.FileSystemUtils;
 import de.rusticprism.vessentials.util.PlaceHolders;
 import de.rusticprism.vessentials.util.commands.CommandManager;
 import de.rusticprism.vessentials.util.commands.Setup;
-import net.kyori.adventure.text.Component;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.translation.GlobalTranslator;
+import net.kyori.adventure.translation.TranslationRegistry;
 import org.slf4j.Logger;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Locale;
 
 @Plugin(
         id = "vessentials",
@@ -27,18 +32,17 @@ import java.nio.file.Path;
         description = "A Essentials Velocity Plugin",
         authors = {"RusticPrism"},
         dependencies = {
-        @Dependency(id = "luckperms", optional = true)
-}
+                @Dependency(id = "luckperms", optional = true)
+        }
 )
 public class VEssentials {
 
     public final Logger logger;
     public final ProxyServer server;
     public static VEssentials PLUGIN;
-    public final MessageConfig messages;
     public final Path path;
     public final CommandManager cmdman;
-    public final Setup setup;
+    public Setup setup;
 
     @Inject
     public VEssentials(ProxyServer server, Logger logger, @DataDirectory Path path) {
@@ -47,17 +51,15 @@ public class VEssentials {
         this.logger = logger;
         this.path = path;
         this.cmdman = new CommandManager();
-        this.messages = new MessageConfig();
         this.setup = new Setup();
     }
 
 
-
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        server.getEventManager().register(this,new JoinEvent());
-        server.getEventManager().register(this,new SaveConfigEvents());
-        server.getEventManager().register(this,new ServerPingEvent());
+        server.getEventManager().register(this, new JoinEvent());
+        server.getEventManager().register(this, new SaveConfigEvents());
+        server.getEventManager().register(this, new ServerPingEvent());
         setup.registerScheduler();
     }
 }

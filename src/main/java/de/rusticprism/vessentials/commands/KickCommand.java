@@ -3,11 +3,7 @@ package de.rusticprism.vessentials.commands;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.configs.BanConfig;
-import de.rusticprism.vessentials.util.CompletionSupplier;
-import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.TabCompleter;
+import de.rusticprism.vessentials.util.*;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
 
@@ -37,9 +33,7 @@ public class KickCommand extends EssentialsCommand {
                             builder.append(args[i]).append(" ");
                         }
                     }
-                    target.disconnect(Component.text(VEssentials.PLUGIN.messages.kickmessage
-                            .replace("%Player%",source instanceof Player player ? player.getUsername() : "CONSOLE")
-                            .replace("%Reason%",builder)));
+                    target.disconnect(PlaceHolders.translate("server-kick-message",target));
                 }else source.sendMessage(Messages.prefix.append(Component.text("§cThis Player isn't online!")));
             }else source.sendMessage(Messages.noperms);
     }

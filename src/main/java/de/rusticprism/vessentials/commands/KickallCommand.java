@@ -3,14 +3,13 @@ package de.rusticprism.vessentials.commands;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
-import de.rusticprism.vessentials.util.CompletionSupplier;
-import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
-import de.rusticprism.vessentials.util.TabCompleter;
+import de.rusticprism.vessentials.configs.DataConfig;
+import de.rusticprism.vessentials.util.*;
 import de.rusticprism.vessentials.util.commands.EssentialsCommand;
 import net.kyori.adventure.text.Component;
 
 import java.util.List;
+import java.util.Vector;
 
 public class KickallCommand extends EssentialsCommand {
     public KickallCommand() {
@@ -28,16 +27,14 @@ public class KickallCommand extends EssentialsCommand {
                     reason.append(args[i]).append(" ");
                 }
             }
+            VEssentials.PLUGIN.setup.configs.getConfig(DataConfig.class).kickPlayer = source instanceof Player ? ((Player) source).getUsername() : "CONSOLE";
+            VEssentials.PLUGIN.setup.configs.getConfig(DataConfig.class).kickReason = String.valueOf(reason);
             if (VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
                 VEssentials.PLUGIN.server.getServer(args[0]).get().getPlayersConnected().forEach(player ->
-                        player.disconnect(Component.text(VEssentials.PLUGIN.messages.kickmessage
-                                .replace("%Player%", source instanceof Player player1 ? player1.getUsername() : "CONSOLE")
-                                .replace("%Reason%", reason))));
+                        player.disconnect(PlaceHolders.translate("server-kick-message",player)));
             } else if (args[0].equalsIgnoreCase("all")) {
                 VEssentials.PLUGIN.server.getAllPlayers().forEach(player ->
-                        player.disconnect(Component.text(VEssentials.PLUGIN.messages.kickmessage
-                                .replace("%Player%", source instanceof Player player1 ? player1.getUsername() : "CONSOLE")
-                                .replace("%Reason%", reason))));
+                        player.disconnect(PlaceHolders.translate("server-kick-message",player)));
             } else source.sendMessage(Messages.prefix.append(Component.text("§cInvalid Arguments!")));
         } else source.sendMessage(Messages.noperms);
     }
