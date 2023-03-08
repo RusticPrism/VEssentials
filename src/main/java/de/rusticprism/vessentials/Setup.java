@@ -12,8 +12,8 @@ import de.rusticprism.vessentials.util.PlaceHolders;
 public class Setup {
     public Groups groups;
     public Setup() {
-        registerAllConfigs();
         new PlaceHolders(VEssentials.PLUGIN);
+        registerAllConfigs();
         new Messages();
         registerallCommands();
        if(groups.groups.isEmpty()) {
@@ -32,6 +32,7 @@ public class Setup {
         groups = new Groups();
         Configurations.register(new DataConfig());
         Configurations.register(new BanConfig());
+        Configurations.register(new NavigatorConfig());
     }
     public void registerScheduler() {
        TablistScheduler.run(VEssentials.PLUGIN.server);

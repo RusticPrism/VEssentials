@@ -57,6 +57,14 @@ def generateTemplates = tasks.register('generateTemplates', Copy) { task ->
     task.into templateDest
     task.expand props
 }
+jar {
+    manifest {
+        attributes 'Main-Class': 'de.rusticprism.vessentials.VEssentials'
+    }
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    from { configurations.runtimeClasspath.collect {
+        it.isDirectory() ? it : zipTree(it) } }
+}
 
 sourceSets.main.java.srcDir(generateTemplates.map { it.outputs })
 

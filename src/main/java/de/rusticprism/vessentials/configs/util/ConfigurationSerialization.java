@@ -23,7 +23,7 @@ public class ConfigurationSerialization {
         this.clazz = clazz;
     }
 
-    @Nullable
+    
     protected Method getMethod(@NotNull String name, boolean isStatic) {
         try {
             Method method = clazz.getDeclaredMethod(name, Map.class);
@@ -43,7 +43,7 @@ public class ConfigurationSerialization {
         }
     }
 
-    @Nullable
+    
     protected Constructor<? extends ConfigurationSerializable> getConstructor() {
         try {
             return clazz.getConstructor(Map.class);
@@ -54,7 +54,7 @@ public class ConfigurationSerialization {
         }
     }
 
-    @Nullable
+    
     protected ConfigurationSerializable deserializeViaMethod(@NotNull Method method, @NotNull Map<String, ?> args) {
         try {
             ConfigurationSerializable result = (ConfigurationSerializable) method.invoke(null, args);
@@ -74,7 +74,7 @@ public class ConfigurationSerialization {
         return null;
     }
 
-    @Nullable
+    
     protected ConfigurationSerializable deserializeViaCtor(@NotNull Constructor<? extends ConfigurationSerializable> ctor, @NotNull Map<String, ?> args) {
         try {
             return ctor.newInstance(args);
@@ -88,7 +88,7 @@ public class ConfigurationSerialization {
         return null;
     }
 
-    @Nullable
+    
     public ConfigurationSerializable deserialize(@NotNull Map<String, ?> args) {
         Preconditions.checkArgument(args != null, "Args must not be null");
 
@@ -136,7 +136,7 @@ public class ConfigurationSerialization {
      * @param args Arguments for deserialization
      * @return New instance of the specified class
      */
-    @Nullable
+    
     public static ConfigurationSerializable deserializeObject(@NotNull Map<String, ?> args) {
         Class<? extends ConfigurationSerializable> clazz;
 
@@ -170,7 +170,7 @@ public class ConfigurationSerialization {
      * @param alias Alias of the serializable
      * @return Registered class, or null if not found
      */
-    @Nullable
+    
     public static Class<? extends ConfigurationSerializable> getClassByAlias(@NotNull String alias) {
         return aliases.get(alias);
     }

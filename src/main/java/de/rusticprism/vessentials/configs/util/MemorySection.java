@@ -133,19 +133,18 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    @Nullable
     public Configuration getRoot() {
         return root;
     }
 
     @Override
-    @Nullable
+    
     public ConfigurationSection getParent() {
         return parent;
     }
 
     @Override
-    public void addDefault(@NotNull String path, @Nullable Object value) {
+    public void addDefault(@NotNull String path,  Object value) {
         Preconditions.checkArgument(path != null, "Path cannot be null");
 
         Configuration root = getRoot();
@@ -159,7 +158,7 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    @Nullable
+    
     public ConfigurationSection getDefaultSection() {
         Configuration root = getRoot();
         Configuration defaults = root == null ? null : root.getDefaults();
@@ -174,7 +173,7 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    public void set(@NotNull String path, @Nullable Object value) {
+    public void set(@NotNull String path,  Object value) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(path), "Cannot set to an empty path");
 
         Configuration root = getRoot();
@@ -219,15 +218,13 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    @Nullable
+    
     public Object get(@NotNull String path) {
         return get(path, getDefault(path));
     }
 
     @Override
-    @Contract("_, !null -> !null")
-    @Nullable
-    public Object get(@NotNull String path, @Nullable Object def) {
+    public Object get(@NotNull String path,  Object def) {
         Preconditions.checkArgument(path != null, "Path cannot be null");
 
         if (path.length() == 0) {
@@ -314,16 +311,13 @@ public class MemorySection implements ConfigurationSection{
 
     // Primitives
     @Override
-    @Nullable
     public String getString(@NotNull String path) {
         Object def = getDefault(path);
         return getString(path, def != null ? def.toString() : null);
     }
 
     @Override
-    @Contract("_, !null -> !null")
-    @Nullable
-    public String getString(@NotNull String path, @Nullable String def) {
+    public String getString(@NotNull String path,  String def) {
         Object val = get(path, def);
         return (val != null) ? val.toString() : def;
     }
@@ -408,7 +402,7 @@ public class MemorySection implements ConfigurationSection{
 
     // Java
     @Override
-    @Nullable
+    
     public List<?> getList(@NotNull String path) {
         Object def = getDefault(path);
         return getList(path, (def instanceof List) ? (List<?>) def : null);
@@ -416,8 +410,8 @@ public class MemorySection implements ConfigurationSection{
 
     @Override
     @Contract("_, !null -> !null")
-    @Nullable
-    public List<?> getList(@NotNull String path, @Nullable List<?> def) {
+    
+    public List<?> getList(@NotNull String path,  List<?> def) {
         Object val = get(path, def);
         return (List<?>) ((val instanceof List) ? val : def);
     }
@@ -633,8 +627,7 @@ public class MemorySection implements ConfigurationSection{
         for (Object object : list) {
             if (object instanceof Character) {
                 result.add((Character) object);
-            } else if (object instanceof String) {
-                String str = (String) object;
+            } else if (object instanceof String str) {
 
                 if (str.length() == 1) {
                     result.add(str.charAt(0));
@@ -696,7 +689,7 @@ public class MemorySection implements ConfigurationSection{
     }
 
     // Bukkit
-    @Nullable
+    
     @Override
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz) {
         Preconditions.checkArgument(clazz != null, "Class cannot be null");
@@ -705,29 +698,29 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Contract("_, _, !null -> !null")
-    @Nullable
+    
     @Override
-    public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def) {
+    public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz,  T def) {
         Preconditions.checkArgument(clazz != null, "Class cannot be null");
         Object val = get(path, def);
         return (val != null && clazz.isInstance(val)) ? clazz.cast(val) : def;
     }
 
-    @Nullable
+    
     @Override
     public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz) {
         return getObject(path, clazz);
     }
 
     @Contract("_, _, !null -> !null")
-    @Nullable
+    
     @Override
-    public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def) {
+    public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz,  T def) {
         return getObject(path, clazz, def);
     }
 
     @Override
-    @Nullable
+    
     public ConfigurationSection getConfigurationSection(@NotNull String path) {
         Object val = get(path, null);
         if (val != null) {
@@ -744,14 +737,12 @@ public class MemorySection implements ConfigurationSection{
         return val instanceof ConfigurationSection;
     }
 
-    protected boolean isPrimitiveWrapper(@Nullable Object input) {
+    protected boolean isPrimitiveWrapper( Object input) {
         return input instanceof Integer || input instanceof Boolean
                 || input instanceof Character || input instanceof Byte
                 || input instanceof Short || input instanceof Double
                 || input instanceof Long || input instanceof Float;
     }
-
-    @Nullable
     protected Object getDefault(@NotNull String path) {
         Preconditions.checkArgument(path != null, "Path cannot be null");
 
@@ -820,7 +811,7 @@ public class MemorySection implements ConfigurationSection{
      * @return Full path of the section from its root.
      */
     @NotNull
-    public static String createPath(@NotNull ConfigurationSection section, @Nullable String key) {
+    public static String createPath(@NotNull ConfigurationSection section,  String key) {
         return createPath(section, key, (section == null) ? null : section.getRoot());
     }
 
@@ -837,7 +828,7 @@ public class MemorySection implements ConfigurationSection{
      * @return Full path of the section from its root.
      */
     @NotNull
-    public static String createPath(@NotNull ConfigurationSection section, @Nullable String key, @Nullable ConfigurationSection relativeTo) {
+    public static String createPath(@NotNull ConfigurationSection section,  String key,  ConfigurationSection relativeTo) {
         Preconditions.checkArgument(section != null, "Cannot create path without a section");
         Configuration root = section.getRoot();
         if (root == null) {
@@ -879,7 +870,7 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    public void setComments(@NotNull final String path, @Nullable final List<String> comments) {
+    public void setComments(@NotNull final String path,  final List<String> comments) {
         final SectionPathData pathData = getSectionPathData(path);
         if (pathData != null) {
             pathData.setComments(comments);
@@ -887,14 +878,14 @@ public class MemorySection implements ConfigurationSection{
     }
 
     @Override
-    public void setInlineComments(@NotNull final String path, @Nullable final List<String> comments) {
+    public void setInlineComments(@NotNull final String path,  final List<String> comments) {
         final SectionPathData pathData = getSectionPathData(path);
         if (pathData != null) {
             pathData.setInlineComments(comments);
         }
     }
 
-    @Nullable
+    
     private SectionPathData getSectionPathData(@NotNull String path) {
         Preconditions.checkArgument(path != null, "Path cannot be null");
 

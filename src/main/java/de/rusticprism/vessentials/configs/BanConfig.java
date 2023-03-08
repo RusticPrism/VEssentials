@@ -70,4 +70,9 @@ public class BanConfig extends Config{
     public String getBannedBy(Player player) {
         return String.valueOf(config.get(player.getUniqueId().toString() + ".bannedby"));
     }
+
+    @Override
+    public void createDefault() {
+
+    }
 }

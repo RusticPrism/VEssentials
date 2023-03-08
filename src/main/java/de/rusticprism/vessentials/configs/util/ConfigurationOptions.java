@@ -138,7 +138,7 @@ public class ConfigurationOptions {
      * @return This object, for chaining
      */
     @NotNull
-    public ConfigurationOptions setHeader(@Nullable List<String> value) {
+    public ConfigurationOptions setHeader( List<String> value) {
         this.header = (value == null) ? Collections.emptyList() : Collections.unmodifiableList(value);
         return this;
     }
@@ -151,7 +151,7 @@ public class ConfigurationOptions {
      */
     @NotNull
     @Deprecated
-    public ConfigurationOptions header(@Nullable String value) {
+    public ConfigurationOptions header( String value) {
         this.header = (value == null) ? Collections.emptyList() : Collections.unmodifiableList(Arrays.asList(value.split("\\n")));
         return this;
     }
@@ -193,7 +193,7 @@ public class ConfigurationOptions {
      * @return This object, for chaining
      */
     @NotNull
-    public ConfigurationOptions setFooter(@Nullable List<String> value) {
+    public ConfigurationOptions setFooter( List<String> value) {
         this.footer = (value == null) ? Collections.emptyList() : Collections.unmodifiableList(value);
         return this;
     }

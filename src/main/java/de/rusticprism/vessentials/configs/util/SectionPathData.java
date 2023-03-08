@@ -11,18 +11,18 @@ public class SectionPathData {
     private List<String> comments;
     private List<String> inlineComments;
 
-    public SectionPathData(@Nullable Object data) {
+    public SectionPathData( Object data) {
         this.data = data;
         comments = Collections.emptyList();
         inlineComments = Collections.emptyList();
     }
 
-    @Nullable
+    
     public Object getData() {
         return data;
     }
 
-    public void setData(@Nullable final Object data) {
+    public void setData( final Object data) {
         this.data = data;
     }
 
@@ -47,7 +47,7 @@ public class SectionPathData {
      *
      * @param comments New comments to set every entry represents one line.
      */
-    public void setComments(@Nullable final List<String> comments) {
+    public void setComments( final List<String> comments) {
         this.comments = (comments == null) ? Collections.emptyList() : Collections.unmodifiableList(comments);
     }
 
@@ -73,7 +73,7 @@ public class SectionPathData {
      * @param inlineComments New comments to set every entry represents one
      * line.
      */
-    public void setInlineComments(@Nullable final List<String> inlineComments) {
+    public void setInlineComments( final List<String> inlineComments) {
         this.inlineComments = (inlineComments == null) ? Collections.emptyList() : Collections.unmodifiableList(inlineComments);
     }
 }

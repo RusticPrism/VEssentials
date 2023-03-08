@@ -22,12 +22,12 @@ public class MemoryConfiguration extends MemorySection implements Configuration{
      * @param defaults Default value provider
      * @throws IllegalArgumentException Thrown if defaults is null
      */
-    public MemoryConfiguration(@Nullable Configuration defaults) {
+    public MemoryConfiguration( Configuration defaults) {
         this.defaults = defaults;
     }
 
     @Override
-    public void addDefault(@NotNull String path, @Nullable Object value) {
+    public void addDefault(@NotNull String path,  Object value) {
         Preconditions.checkArgument(path != null, "Path may not be null");
 
         if (defaults == null) {
@@ -65,12 +65,12 @@ public class MemoryConfiguration extends MemorySection implements Configuration{
     }
 
     @Override
-    @Nullable
+    
     public Configuration getDefaults() {
         return defaults;
     }
 
-    @Nullable
+    
     @Override
     public ConfigurationSection getParent() {
         return null;

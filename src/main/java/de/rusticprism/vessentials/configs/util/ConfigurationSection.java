@@ -26,23 +26,23 @@ import java.util.Set;
     
      boolean isSet(@NotNull String path);
 
-    @Nullable
+    
      String getCurrentPath();
 
     
     @NotNull
      String getName();
-    @Nullable
+    
      ConfigurationSection getParent();
 
-     @Nullable Configuration getRoot();
+      Configuration getRoot();
     
-    @Nullable
+    
      Object get(@NotNull String path);
     @Contract("_, !null -> !null")
-    @Nullable
-     Object get(@NotNull String path, @Nullable Object def);
-     void set(@NotNull String path, @Nullable Object value);
+    
+     Object get(@NotNull String path,  Object def);
+     void set(@NotNull String path,  Object value);
 
     
     @NotNull
@@ -55,13 +55,13 @@ import java.util.Set;
     // Primitives
 
     
-    @Nullable
+    
      String getString(@NotNull String path);
 
     
     @Contract("_, !null -> !null")
-    @Nullable
-     String getString(@NotNull String path, @Nullable String def);
+    
+     String getString(@NotNull String path,  String def);
 
     
      boolean isString(@NotNull String path);
@@ -105,13 +105,13 @@ import java.util.Set;
     // Java
 
     
-    @Nullable
+    
      List<?> getList(@NotNull String path);
 
     
     @Contract("_, !null -> !null")
-    @Nullable
-     List<?> getList(@NotNull String path, @Nullable List<?> def);
+    
+     List<?> getList(@NotNull String path,  List<?> def);
 
     
      boolean isList(@NotNull String path);
@@ -159,35 +159,35 @@ import java.util.Set;
     // Bukkit
 
     
-    @Nullable
+    
      <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz);
 
     
     @Contract("_, _, !null -> !null")
-    @Nullable
-     <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
+    
+     <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz,  T def);
 
     
-    @Nullable
+    
      <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz);
 
     
     @Contract("_, _, !null -> !null")
-    @Nullable
-     <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
     
-    @Nullable
+     <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz,  T def);
+    
+    
      ConfigurationSection getConfigurationSection(@NotNull String path);
 
     
      boolean isConfigurationSection(@NotNull String path);
 
     
-    @Nullable
+    
      ConfigurationSection getDefaultSection();
 
     
-     void addDefault(@NotNull String path, @Nullable Object value);
+     void addDefault(@NotNull String path,  Object value);
 
     
     @NotNull
@@ -198,8 +198,8 @@ import java.util.Set;
      List<String> getInlineComments(@NotNull String path);
 
     
-     void setComments(@NotNull String path, @Nullable List<String> comments);
+     void setComments(@NotNull String path,  List<String> comments);
 
     
-     void setInlineComments(@NotNull String path, @Nullable List<String> comments);
+     void setInlineComments(@NotNull String path,  List<String> comments);
 }

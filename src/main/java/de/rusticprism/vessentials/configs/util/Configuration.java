@@ -21,7 +21,7 @@ public interface Configuration extends ConfigurationSection {
      * @throws IllegalArgumentException Thrown if path is null.
      */
     @Override
-    void addDefault(@NotNull String path, @Nullable Object value);
+    void addDefault(@NotNull String path,  Object value);
 
     /**
      * Sets the default values of the given paths as provided.
@@ -72,7 +72,7 @@ public interface Configuration extends ConfigurationSection {
      *
      * @return Configuration source for default values, or null if none exist.
      */
-    @Nullable Configuration getDefaults();
+     Configuration getDefaults();
 
     /**
      * Gets the {@link ConfigurationOptions} for this {@link Configuration}.

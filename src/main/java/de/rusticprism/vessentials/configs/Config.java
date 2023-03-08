@@ -25,9 +25,11 @@ public abstract class Config {
                 VEssentials.PLUGIN.logger.warn("Error creating " + file.getName(), e);
                 return;
             }
-        }
-        config = YamlConfiguration.loadConfiguration(file);
+            config = YamlConfiguration.loadConfiguration(file);
+            createDefault();
+        }else config = YamlConfiguration.loadConfiguration(file);
     }
+    public abstract void createDefault();
 
     public String getName() {
         return name;

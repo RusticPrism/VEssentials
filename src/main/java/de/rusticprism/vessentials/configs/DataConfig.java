@@ -8,9 +8,6 @@ public class DataConfig extends Config{
     public boolean friendsMessage = true;
     public DataConfig() {
         super("data", true);
-        config.set("maintenance", "false");
-        config.set("global-tablist", "true");
-        config.set("friends-message", "true");
     }
 
     public boolean isMaintenance() {
@@ -50,5 +47,12 @@ public class DataConfig extends Config{
     }
     public boolean isFriendsMessage() {
         return friendsMessage;
+    }
+
+    @Override
+    public void createDefault() {
+        config.set("maintenance", "false");
+        config.set("global-tablist", "true");
+        config.set("friends-message", "true");
     }
 }

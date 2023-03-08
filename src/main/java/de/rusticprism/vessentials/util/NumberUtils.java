@@ -3,7 +3,7 @@ package de.rusticprism.vessentials.util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class NumberConversion {
+public final class NumberUtils {
     private void NumberConversions() {
     }
 
@@ -25,7 +25,7 @@ public final class NumberConversion {
         return num * num;
     }
 
-    public static int toInt(@Nullable Object object) {
+    public static int toInt( Object object) {
         if (object instanceof Number) {
             return ((Number) object).intValue();
         }
@@ -37,7 +37,7 @@ public final class NumberConversion {
         return 0;
     }
 
-    public static float toFloat(@Nullable Object object) {
+    public static float toFloat( Object object) {
         if (object instanceof Number) {
             return ((Number) object).floatValue();
         }
@@ -49,7 +49,7 @@ public final class NumberConversion {
         return 0;
     }
 
-    public static double toDouble(@Nullable Object object) {
+    public static double toDouble( Object object) {
         if (object instanceof Number) {
             return ((Number) object).doubleValue();
         }
@@ -61,7 +61,7 @@ public final class NumberConversion {
         return 0;
     }
 
-    public static long toLong(@Nullable Object object) {
+    public static long toLong( Object object) {
         if (object instanceof Number) {
             return ((Number) object).longValue();
         }
@@ -73,7 +73,7 @@ public final class NumberConversion {
         return 0;
     }
 
-    public static short toShort(@Nullable Object object) {
+    public static short toShort( Object object) {
         if (object instanceof Number) {
             return ((Number) object).shortValue();
         }
@@ -85,7 +85,7 @@ public final class NumberConversion {
         return 0;
     }
 
-    public static byte toByte(@Nullable Object object) {
+    public static byte toByte( Object object) {
         if (object instanceof Number) {
             return ((Number) object).byteValue();
         }
@@ -114,6 +114,14 @@ public final class NumberConversion {
     public static void checkFinite(float d, @NotNull String message) {
         if (!isFinite(d)) {
             throw new IllegalArgumentException(message);
+        }
+    }
+    public static boolean isInteger(String number) {
+        try {
+            Integer.parseInt(number);
+            return true;
+        }catch (NumberFormatException e) {
+            return false;
         }
     }
 }

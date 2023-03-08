@@ -1,16 +1,26 @@
 package de.rusticprism.vessentials.util;
 
-import com.velocitypowered.proxy.protocol.ProtocolUtils;
 import dev.simplix.protocolize.api.inventory.Inventory;
 import dev.simplix.protocolize.api.item.ItemStack;
-import dev.simplix.protocolize.api.util.ProtocolUtil;
 import dev.simplix.protocolize.data.ItemType;
 import dev.simplix.protocolize.data.inventory.InventoryType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class InventoryUtils {
+
+    public static HashMap<Integer, InventoryType> rows = new HashMap<>();
+
+    static  {
+        rows.put(1,InventoryType.GENERIC_9X1);
+        rows.put(2,InventoryType.GENERIC_9X2);
+        rows.put(3,InventoryType.GENERIC_9X3);
+        rows.put(4,InventoryType.GENERIC_9X4);
+        rows.put(5,InventoryType.GENERIC_9X5);
+    }
+
     public static Inventory ERROR_INV() {
         Inventory inventory = new Inventory(InventoryType.CRAFTING);
         inventory.title(PlaceHolders.replaceAsComponent("<dark_red>ERROR"));
