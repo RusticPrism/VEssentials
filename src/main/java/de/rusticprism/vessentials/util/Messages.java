@@ -19,6 +19,6 @@ public class Messages {
         toManyArgs = PlaceHolders.replaceAsComponent("%plugin_prefix% <red>You provided to many arguments!");
         toFewArgs = PlaceHolders.replaceAsComponent("%plugin_prefix% <red>You provided to few arguments!");
         playerNotOnline = PlaceHolders.replaceAsComponent("%plugin_prefix% <red>The provided player isn´t online!");
-        args = PlaceHolders.replaceAsComponent("%plugin_prefix% <red>Wrong Argument");
+        args = PlaceHolders.replaceAsComponent("%plugin_prefix% <red>You provided to many/few arguments!");
     }
 }

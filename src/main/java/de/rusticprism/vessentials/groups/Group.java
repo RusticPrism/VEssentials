@@ -8,7 +8,7 @@ public class Group {
     private final String name;
     private String prefix;
     private String suffix;
-    private List<String> players;
+    private final List<String> players;
 
     public Group(String name, String prefix, String suffix) {
         this.name = name;

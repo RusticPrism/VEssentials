@@ -5,24 +5,19 @@ import dev.simplix.protocolize.api.Direction;
 import dev.simplix.protocolize.api.listener.AbstractPacketListener;
 import dev.simplix.protocolize.api.listener.PacketReceiveEvent;
 import dev.simplix.protocolize.api.listener.PacketSendEvent;
-import dev.simplix.protocolize.data.packets.SetSlot;
 
-public class PacketEvent extends AbstractPacketListener<SetSlot> {
+public class PacketEvent extends AbstractPacketListener<MinecraftPacket> {
     public PacketEvent() {
-        super(SetSlot.class, Direction.UPSTREAM, 10);
+        super(MinecraftPacket.class, Direction.UPSTREAM, 10);
     }
 
     @Override
     public void packetReceive(PacketReceiveEvent packetReceiveEvent) {
-        System.out.println(((SetSlot)packetReceiveEvent.packet()).itemStack());
-        System.out.println(((SetSlot)packetReceiveEvent.packet()).slot());
-        System.out.println(((SetSlot)packetReceiveEvent.packet()).windowId());
+        System.out.println(packetReceiveEvent.packet().getClass().getPackageName());
     }
 
     @Override
     public void packetSend(PacketSendEvent packetSendEvent) {
-        System.out.println(((SetSlot)packetSendEvent.packet()).itemStack());
-        System.out.println(((SetSlot)packetSendEvent.packet()).slot());
-        System.out.println(((SetSlot)packetSendEvent.packet()).windowId());
+        System.out.println(packetSendEvent.packet().getClass().getPackageName());
     }
 }

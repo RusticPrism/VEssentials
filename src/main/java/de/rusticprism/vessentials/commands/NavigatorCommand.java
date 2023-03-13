@@ -21,6 +21,7 @@ import dev.simplix.protocolize.data.inventory.InventoryType;
 import net.kyori.adventure.text.Component;
 
 //@CommandInfo(name = "navigator", permission = "essentials.command.navigator", requiresPlayer = true)
+//TODO make Proxy Inventories editable
 public class NavigatorCommand extends PluginCommand {
 
     @Override

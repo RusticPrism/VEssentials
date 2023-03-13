@@ -12,7 +12,10 @@ import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.PlaceHolders;
+import dev.simplix.protocolize.api.Protocolize;
+import net.kyori.adventure.chat.SignedMessage;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ScoreComponent;
 
 public class JoinEvent {
 

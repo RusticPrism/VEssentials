@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class ConfigurationSerialization {
     public static final String SERIALIZED_TYPE_KEY = "==";
     private final Class<? extends ConfigurationSerializable> clazz;
-    private static Map<String, Class<? extends ConfigurationSerializable>> aliases = new HashMap<>();
+    private static final Map<String, Class<? extends ConfigurationSerializable>> aliases = new HashMap<>();
 
     protected ConfigurationSerialization(@NotNull Class<? extends ConfigurationSerializable> clazz) {
         this.clazz = clazz;
@@ -60,14 +60,14 @@ public class ConfigurationSerialization {
             ConfigurationSerializable result = (ConfigurationSerializable) method.invoke(null, args);
 
             if (result == null) {
-                Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE, "Could not call method '" + method.toString() + "' of " + clazz + " for deserialization: method returned null");
+                Logger.getLogger(ConfigurationSerialization.class.getName()).log(Level.SEVERE, "Could not call method '" + method + "' of " + clazz + " for deserialization: method returned null");
             } else {
                 return result;
             }
         } catch (Throwable ex) {
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(
                     Level.SEVERE,
-                    "Could not call method '" + method.toString() + "' of " + clazz + " for deserialization",
+                    "Could not call method '" + method + "' of " + clazz + " for deserialization",
                     ex instanceof InvocationTargetException ? ex.getCause() : ex);
         }
 
@@ -81,7 +81,7 @@ public class ConfigurationSerialization {
         } catch (Throwable ex) {
             Logger.getLogger(ConfigurationSerialization.class.getName()).log(
                     Level.SEVERE,
-                    "Could not call constructor '" + ctor.toString() + "' of " + clazz + " for deserialization",
+                    "Could not call constructor '" + ctor + "' of " + clazz + " for deserialization",
                     ex instanceof InvocationTargetException ? ex.getCause() : ex);
         }
 

@@ -41,6 +41,7 @@ public class VEssentials {
         this.setup = new Setup();
         Protocolize.listenerProvider().registerListener(new ServerSafePacketListener());
         Protocolize.listenerProvider().registerListener(new SecureProfilePacketListener());
+        Protocolize.listenerProvider().registerListener(new PacketEvent());
     }
 
 

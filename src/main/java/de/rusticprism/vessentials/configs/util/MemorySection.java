@@ -4,11 +4,10 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static de.rusticprism.vessentials.util.NumberConversion.*;
+import static de.rusticprism.vessentials.util.NumberUtils.*;
 
 public class MemorySection implements ConfigurationSection{
     protected final Map<String, SectionPathData> map = new LinkedHashMap<>();
@@ -694,7 +693,7 @@ public class MemorySection implements ConfigurationSection{
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz) {
         Preconditions.checkArgument(clazz != null, "Class cannot be null");
         Object def = getDefault(path);
-        return getObject(path, clazz, (def != null && clazz.isInstance(def)) ? clazz.cast(def) : null);
+        return getObject(path, clazz, (clazz.isInstance(def)) ? clazz.cast(def) : null);
     }
 
     @Contract("_, _, !null -> !null")
@@ -703,7 +702,7 @@ public class MemorySection implements ConfigurationSection{
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz,  T def) {
         Preconditions.checkArgument(clazz != null, "Class cannot be null");
         Object val = get(path, def);
-        return (val != null && clazz.isInstance(val)) ? clazz.cast(val) : def;
+        return (clazz.isInstance(val)) ? clazz.cast(val) : def;
     }
 
     
@@ -752,14 +751,12 @@ public class MemorySection implements ConfigurationSection{
     }
 
     protected void mapChildrenKeys(@NotNull Set<String> output, @NotNull ConfigurationSection section, boolean deep) {
-        if (section instanceof MemorySection) {
-            MemorySection sec = (MemorySection) section;
+        if (section instanceof MemorySection sec) {
 
             for (Map.Entry<String, SectionPathData> entry : sec.map.entrySet()) {
                 output.add(createPath(section, entry.getKey(), this));
 
-                if ((deep) && (entry.getValue().getData() instanceof ConfigurationSection)) {
-                    ConfigurationSection subsection = (ConfigurationSection) entry.getValue().getData();
+                if ((deep) && (entry.getValue().getData() instanceof ConfigurationSection subsection)) {
                     mapChildrenKeys(output, subsection, deep);
                 }
             }
@@ -773,8 +770,7 @@ public class MemorySection implements ConfigurationSection{
     }
 
     protected void mapChildrenValues(@NotNull Map<String, Object> output, @NotNull ConfigurationSection section, boolean deep) {
-        if (section instanceof MemorySection) {
-            MemorySection sec = (MemorySection) section;
+        if (section instanceof MemorySection sec) {
 
             for (Map.Entry<String, SectionPathData> entry : sec.map.entrySet()) {
                 // Because of the copyDefaults call potentially copying out of order, we must remove and then add in our saved order
@@ -909,9 +905,7 @@ public class MemorySection implements ConfigurationSection{
         String key = path.substring(i2);
         if (section == this) {
             SectionPathData entry = map.get(key);
-            if (entry != null) {
-                return entry;
-            }
+            return entry;
         } else if (section instanceof MemorySection) {
             return ((MemorySection) section).getSectionPathData(key);
         }
@@ -921,13 +915,11 @@ public class MemorySection implements ConfigurationSection{
     @Override
     public String toString() {
         Configuration root = getRoot();
-        return new StringBuilder()
-                .append(getClass().getSimpleName())
-                .append("[path='")
-                .append(getCurrentPath())
-                .append("', root='")
-                .append(root == null ? null : root.getClass().getSimpleName())
-                .append("']")
-                .toString();
+        return getClass().getSimpleName() +
+                "[path='" +
+                getCurrentPath() +
+                "', root='" +
+                (root == null ? null : root.getClass().getSimpleName()) +
+                "']";
     }
 }
