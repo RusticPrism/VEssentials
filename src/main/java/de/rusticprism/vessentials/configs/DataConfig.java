@@ -9,6 +9,9 @@ public class DataConfig extends Config{
     public DataConfig() {
         super("data", true);
     }
+    public String getLobbyServer() {
+        return config.getString("LobbyServer");
+    }
 
     public boolean isMaintenance() {
         return Boolean.parseBoolean(String.valueOf(config.get("maintenance")));
@@ -54,5 +57,6 @@ public class DataConfig extends Config{
         config.set("maintenance", "false");
         config.set("global-tablist", "true");
         config.set("friends-message", "true");
+        config.set("LobbyServer", "lobby");
     }
 }

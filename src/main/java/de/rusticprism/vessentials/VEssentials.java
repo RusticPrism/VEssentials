@@ -50,6 +50,7 @@ public class VEssentials {
         server.getEventManager().register(this, new JoinEvent());
         server.getEventManager().register(this, new SaveConfigEvents());
         server.getEventManager().register(this, new ServerPingEvent());
+        server.getEventManager().register(this, new PluginMessageListener());
         setup.registerScheduler();
     }
 }

@@ -14,7 +14,6 @@ public class Setup {
     public Setup() {
         new PlaceHolders(VEssentials.PLUGIN);
         registerAllConfigs();
-        new Messages();
         registerallCommands();
        if(groups.groups.isEmpty()) {
            Group player = groups.createGroup("Player");
