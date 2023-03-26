@@ -19,18 +19,18 @@ public class MaintenanceCommand extends PluginCommand {
         if (args.length == 0) {
             if (config.isMaintenance()) {
                 config.setMaintenance(false);
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully §1disabled §8the maintenance mode!")));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully <blue>disabled <gray>the maintenance mode!")));
             } else {
                 config.setMaintenance(true);
                 config.setMaintenancereason("Network Maintenance");
                 config.setMaintenanceplayer(source instanceof Player player ? player.getUsername() : "CONSOLE");
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully §1enabled §8the maintenance mode!")));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully <blue>enabled <gray>the maintenance mode!")));
                 kickAllPlayer();
             }
         } else {
             if (config.isMaintenance()) {
                 config.setMaintenance(false);
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully §1disabled §8the maintenance mode!")));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully <blue>disabled <gray>the maintenance mode!")));
             } else {
                 StringBuilder builder = new StringBuilder();
                 for (String str : args) {
@@ -39,7 +39,7 @@ public class MaintenanceCommand extends PluginCommand {
                 config.setMaintenance(true);
                 config.setMaintenancereason(builder.substring(0, builder.length() - 1));
                 config.setMaintenanceplayer(source instanceof Player player ? player.getUsername() : "CONSOLE");
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully §1enabled §8the maintenance mode!")));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully <blue>enabled <gray>the maintenance mode!")));
                 kickAllPlayer();
             }
         }

@@ -7,7 +7,6 @@ import de.rusticprism.vessentials.commands.util.PluginCommand;
 import de.rusticprism.vessentials.commands.util.TabCompleter;
 import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.PlaceHolders;
-import net.kyori.adventure.text.Component;
 
 import java.util.List;
 
@@ -22,14 +21,15 @@ public class BroadcastCommand extends PluginCommand {
                 for (int i = 1; i < args.length; i++) {
                     broadcast.append(args[i]).append(" ");
                 }
-                VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>Broadcast<dark_gray>]<reset> " + broadcast));
+                VEssentials.PLUGIN.server.getServer(args[0]).get().sendMessage(PlaceHolders.replaceAsComponent("<gray>[<blue>Broadcast<gray>]<reset> " + broadcast.substring(0, broadcast.length() - 1)));
             } else if (args[0].equalsIgnoreCase("all")) {
                 StringBuilder broadcast = new StringBuilder();
                 for (int i = 1; i < args.length; i++) {
                     broadcast.append(args[i]).append(" ");
                 }
-                VEssentials.PLUGIN.server.sendMessage(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>Broadcast<dark_gray>]<reset>" + broadcast));
-            } else source.sendMessage(Messages.prefix.append(Component.text("§cInvalid Arguments!")));
+                VEssentials.PLUGIN.server.sendMessage(PlaceHolders.replaceAsComponent("<gray>[<blue>Broadcast<gray>]<reset>" + broadcast));
+            } else
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>Invalid Arguments!")));
         } else source.sendMessage(Messages.toManyArgs);
     }
 @Override

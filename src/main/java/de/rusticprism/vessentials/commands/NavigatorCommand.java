@@ -1,8 +1,6 @@
 package de.rusticprism.vessentials.commands;
 
 import com.velocitypowered.api.proxy.Player;
-import com.velocitypowered.proxy.protocol.StateRegistry;
-import de.rusticprism.vessentials.commands.util.CommandInfo;
 import de.rusticprism.vessentials.commands.util.PluginCommand;
 import de.rusticprism.vessentials.commands.util.TabCompleter;
 import de.rusticprism.vessentials.configs.Configurations;
@@ -12,13 +10,9 @@ import de.rusticprism.vessentials.util.NumberUtils;
 import de.rusticprism.vessentials.util.PlaceHolders;
 import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.inventory.Inventory;
-import dev.simplix.protocolize.api.inventory.PlayerInventory;
 import dev.simplix.protocolize.api.item.BaseItemStack;
-import dev.simplix.protocolize.api.item.ItemFlag;
 import dev.simplix.protocolize.api.item.ItemStack;
 import dev.simplix.protocolize.api.player.ProtocolizePlayer;
-import dev.simplix.protocolize.data.inventory.InventoryType;
-import net.kyori.adventure.text.Component;
 
 //@CommandInfo(name = "navigator", permission = "essentials.command.navigator", requiresPlayer = true)
 //TODO make Proxy Inventories editable
@@ -61,7 +55,7 @@ public class NavigatorCommand extends PluginCommand {
                         return;
                     }
                     inventory.removeItem(Integer.parseInt(args[1]));
-                    player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully removed the Item in slot <dark_blue>" + args[1] + " <gray>from the Navigator")));
+                    player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully removed the Item in slot <blue>" + args[1] + " <gray>from the Navigator")));
                 }
             }
         }

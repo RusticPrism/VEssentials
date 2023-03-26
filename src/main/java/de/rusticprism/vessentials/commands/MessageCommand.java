@@ -19,8 +19,8 @@ public class MessageCommand extends PluginCommand {
                 for (int i = 1; i < args.length; i++) {
                     builder.append(args[i]).append(" ");
                 }
-                player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>me <dark_gray>-> <dark_blue>" + target.getUsername() + "<dark_gray>]<reset>" + builder)));
-                target.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<dark_gray>[<dark_blue>" + player.getUsername() + " <dark_gray>-> <dark_blue>me<dark_gray>]<reset>" + builder)));
+                player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>[<blue>me <gray>-> <blue>" + target.getUsername() + "<gray>]<reset>" + builder)));
+                target.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>[<blue>" + player.getUsername() + " <gray>-> <blue>me<gray>]<reset>" + builder)));
             } else player.sendMessage(Messages.playerNotOnline);
         }else player.sendMessage(Messages.toFewArgs);
     }

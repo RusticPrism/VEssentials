@@ -17,7 +17,7 @@ public class Setup {
         registerallCommands();
        if(groups.groups.isEmpty()) {
            Group player = groups.createGroup("Player");
-           player.setPrefix("§7Player | §7");
+           player.setPrefix("<gray>Player | <gray>");
            for(Player player1 : VEssentials.PLUGIN.server.getAllPlayers()) {
                player.addPlayer(player1.getUsername());
            }

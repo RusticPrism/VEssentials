@@ -21,7 +21,7 @@ public class BanCommand extends PluginCommand {
                 if (VEssentials.PLUGIN.server.getPlayer(args[0]).isPresent()) {
                     Player target = VEssentials.PLUGIN.server.getPlayer(args[0]).get();
                     if (Permission.hasPermission(target, "essentials.command.ban")) {
-                        source.sendMessage(Messages.prefix.append(Component.text("§cYou don't have the Permission to ban this Player")));
+                        source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You don't have the Permission to ban this Player")));
                         return;
                     }
                     StringBuilder builder = new StringBuilder();
@@ -33,10 +33,11 @@ public class BanCommand extends PluginCommand {
                         }
                     }
                     BanConfig config = Configurations.getConfig(BanConfig.class);
-                    config.banPlayer(target, builder.toString(), "Lifetime", source instanceof Player player ? player.getUsername() : "CONSOLE");
-                    target.disconnect(PlaceHolders.translate("server-ban-message",target));
-                    source.sendMessage(Messages.prefix.append(Component.text("§8Successfully banned the Player§1 " + target.getUsername() + "§8.")));
-                } else source.sendMessage(Messages.prefix.append(Component.text("§cThis Player isn't online!")));
+                    config.banPlayer(target, builder.substring(0, builder.length() - 1), "Lifetime", source instanceof Player player ? player.getUsername() : "CONSOLE");
+                    target.disconnect(PlaceHolders.translate("server-ban-message", target));
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully banned the Player<blue> " + target.getUsername() + "<gray>.")));
+                } else
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>This Player isn't online!")));
             }else source.sendMessage(Messages.toFewArgs);
     }
 

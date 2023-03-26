@@ -7,6 +7,7 @@ import de.rusticprism.vessentials.commands.util.CommandInfo;
 import de.rusticprism.vessentials.commands.util.PluginCommand;
 import de.rusticprism.vessentials.commands.util.TabCompleter;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import net.kyori.adventure.text.Component;
 
 import java.util.ArrayList;
@@ -18,19 +19,19 @@ public class OnlineCommand extends PluginCommand {
     @Override
     public void execute(CommandSource source, String[] args) {
         if (args.length == 0) {
-            source.sendMessage(Messages.prefix.append(Component.text(" §8There are §1" + VEssentials.PLUGIN.server.getPlayerCount() + " §8out of §1" + VEssentials.PLUGIN.server.getConfiguration().getShowMaxPlayers() + " §8Players online!")));
+            source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent(" <gray>There are <blue>" + VEssentials.PLUGIN.server.getPlayerCount() + " <gray>out of <blue>" + VEssentials.PLUGIN.server.getConfiguration().getShowMaxPlayers() + " <gray>Players online!")));
         } else if (args.length == 1) {
             if (VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
                 RegisteredServer server = VEssentials.PLUGIN.server.getServer(args[0]).get();
                 try {
-                    source.sendMessage(Messages.prefix.append(Component.text("§8There are §1" + server.getPlayersConnected().size() + " §8out of §1" + server.ping().get().asBuilder().getMaximumPlayers() + " §8Players on the Server §1" + server.getServerInfo().getName() + "§8!")));
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>There are <blue>" + server.getPlayersConnected().size() + " <gray>out of <blue>" + server.ping().get().asBuilder().getMaximumPlayers() + " <gray>Players on the Server <blue>" + server.getServerInfo().getName() + "<gray>!")));
                 } catch (InterruptedException | ExecutionException e) {
-                    source.sendMessage(Messages.prefix.append(Component.text("§cCouldn't get Server information! Server is maybe offline!")));
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>Couldn't get Server information! Server is maybe offline!")));
                 }
-            }
-            if (args[0].equalsIgnoreCase("all")) {
-                source.sendMessage(Messages.prefix.append(Component.text(" §8There are §1" + VEssentials.PLUGIN.server.getPlayerCount() + " §8out of §1" + VEssentials.PLUGIN.server.getConfiguration().getShowMaxPlayers() + " §8Players online!")));
-            } else source.sendMessage(Messages.prefix.append(Component.text("§cThis server doesn't exist!")));
+            } else if (args[0].equalsIgnoreCase("all")) {
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent(" <gray>There are <blue>" + VEssentials.PLUGIN.server.getPlayerCount() + " <gray>out of <blue>" + VEssentials.PLUGIN.server.getConfiguration().getShowMaxPlayers() + " <gray>Players online!")));
+            } else
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>This server doesn't exist!")));
         } else source.sendMessage(Messages.toManyArgs);
     }
 

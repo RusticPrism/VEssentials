@@ -18,51 +18,53 @@ public class GroupCommand extends PluginCommand {
     @Override
     public void execute(CommandSource source, String[] args) {
         if (args.length == 0) {
-            source.sendMessage(Messages.prefix.append(Component.text("§cTo few Arguments")));
+            source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>To few Arguments")));
         } else switch (args[0].toLowerCase()) {
             case "create" -> {
                 Group group = VEssentials.PLUGIN.setup.groups.createGroup(args[1]);
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully created the group §1" + group.getName())));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully created the group <blue>" + group.getName())));
             }
             case "remove" -> {
                 VEssentials.PLUGIN.setup.groups.removeGroup(args[1]);
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully removed the group §1" + args[1])));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully removed the group <blue>" + args[1])));
             }
             case "addplayer" -> {
                 if (VEssentials.PLUGIN.server.getPlayer(args[2]).isPresent()) {
                     Player player = VEssentials.PLUGIN.server.getPlayer(args[2]).get();
                     VEssentials.PLUGIN.setup.groups.getGroup(args[1]).addPlayer(player.getUsername());
-                    source.sendMessage(Messages.prefix.append(Component.text("§8Successfully added §1" + player.getUsername() + " §8to the group §1" + args[1])));
-                } else source.sendMessage(Messages.prefix.append(Component.text("§cThis Player isn't online!")));
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully added <blue>" + player.getUsername() + " <gray>to the group <blue>" + args[1])));
+                } else
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>This Player isn't online!")));
             }
             case "removeplayer" -> {
                 VEssentials.PLUGIN.setup.groups.getGroup(args[1]).removePlayer(args[2]);
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully removed §1" + args[2] + " §8to the group §1" + args[1])));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully removed <blue>" + args[2] + " <gray>to the group <blue>" + args[1])));
             }
             case "list" -> {
                 StringBuilder names = new StringBuilder();
                 for(String player : VEssentials.PLUGIN.setup.groups.getGroup(args[1]).getPlayers()) {
-                    names.append(player).append("§8, §1");
+                    names.append(player).append("<gray>, <blue>");
                 }
-                source.sendMessage(Messages.prefix.append(Component.text("§8List of Player in that group: §1" + names.substring(0, names.length() -4) + "§8.")));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>List of Player in that group: <blue>" + names.substring(0, names.length() - 4) + "<gray>.")));
             }
             case "prefix" -> {
                 StringBuilder prefixbuilder = new StringBuilder();
                 for(int i = 2; i < args.length; i ++) {
                     prefixbuilder.append(args[i]).append(" ");
                 }
-                VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setPrefix(prefixbuilder.substring(0,prefixbuilder.length() -1));
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully set the §1prefix §8of the group §1" + args[1])));
+                VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setPrefix(prefixbuilder.substring(0, prefixbuilder.length() - 1));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully set the <blue>prefix <gray>of the group <blue>" + args[1])));
             }
             case "suffix" -> {
                 StringBuilder suffixbuilder = new StringBuilder();
-                for(int i = 2; i < args.length; i ++) {
+                for (int i = 2; i < args.length; i++) {
                     suffixbuilder.append(args[i]).append(" ");
                 }
-                VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setSuffix(suffixbuilder.substring(0,suffixbuilder.length() -1));
-                source.sendMessage(Messages.prefix.append(Component.text("§8Successfully set the §1suffix §8of the group §1" + args[1])));
+                VEssentials.PLUGIN.setup.groups.getGroup(args[1]).setSuffix(suffixbuilder.substring(0, suffixbuilder.length() - 1));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully set the <blue>suffix <gray>of the group <blue>" + args[1])));
             }
-            default -> source.sendMessage(Messages.prefix.append(Component.text("§cYou gave a wrong Argument!")));
+            default ->
+                    source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You gave a wrong Argument!")));
         }
     }
     @Override

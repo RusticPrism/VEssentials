@@ -1,14 +1,9 @@
 package de.rusticprism.vessentials.configs;
 
 import de.rusticprism.vessentials.util.InventoryUtils;
-import de.rusticprism.vessentials.util.PlaceHolders;
-import dev.simplix.protocolize.api.Protocolize;
 import dev.simplix.protocolize.api.inventory.Inventory;
-import dev.simplix.protocolize.api.inventory.InventoryClick;
 import dev.simplix.protocolize.api.item.BaseItemStack;
 import dev.simplix.protocolize.api.item.ItemStack;
-import dev.simplix.protocolize.api.mapping.ProtocolMapping;
-import dev.simplix.protocolize.api.player.ProtocolizePlayer;
 import dev.simplix.protocolize.data.ItemType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -65,7 +60,7 @@ public class NavigatorConfig extends Config{
             config.set("Slots." + entry.getKey() + ".name", MiniMessage.miniMessage().serialize(entry.getValue().displayName()));
             config.set("Slots." + entry.getKey() + ".lore", lore);
         }
-        config.saveToFile(getFile(),"Error Saving Navigator Config!");
+        saveConfig();
     }
 
     @Override
@@ -75,6 +70,6 @@ public class NavigatorConfig extends Config{
         config.set("Slots.13.type", ItemType.GRASS_BLOCK.name());
         config.set("Slots.13.name", "<green>Survival");
         config.set("Slots.13.lore", List.of("line1", "line2"));
-        config.saveToFile(getFile(),"Error saving Defaults of Navigator Config.");
+        saveConfig();
     }
 }

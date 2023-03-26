@@ -7,6 +7,7 @@ import de.rusticprism.vessentials.commands.util.CommandInfo;
 import de.rusticprism.vessentials.commands.util.PluginCommand;
 import de.rusticprism.vessentials.commands.util.TabCompleter;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -23,27 +24,28 @@ public class ServerCommand extends PluginCommand {
     public void execute(Player player, String[] args) {
         if (player.getCurrentServer().isPresent()) {
             if (args.length == 0) {
-                Component servermsg = Messages.prefix.append(Component.text("§8You are currently connected to §1" + player.getCurrentServer().get().getServerInfo().getName() + "§8.")
-                        .append(Component.text("\n"))
+                Component servermsg = Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>You are currently connected to <blue>" + player.getCurrentServer().get().getServerInfo().getName() + "<gray>.")
+                        .append(PlaceHolders.replaceAsComponent("\n"))
                         .append(Messages.prefix)
-                        .append(Component.text("§8Available Servers: §1")));
+                        .append(PlaceHolders.replaceAsComponent("<gray>Available Servers: <blue>")));
                 List<RegisteredServer> rs = (List<RegisteredServer>) VEssentials.PLUGIN.server.getAllServers();
-                for(int i = 0; i < rs.size(); i++) {
+                for (int i = 0; i < rs.size(); i++) {
                     RegisteredServer server = rs.get(i);
-                    servermsg = servermsg.append(formatServer(server,player));
-                    if(i != rs.size() -1) {
-                        servermsg = servermsg.append(Component.text(", ", NamedTextColor.DARK_GRAY));
+                    servermsg = servermsg.append(formatServer(server, player));
+                    if (i != rs.size() - 1) {
+                        servermsg = servermsg.append(PlaceHolders.replaceAsComponent("<gray>, "));
                     }
                 }
                 player.sendMessage(servermsg);
-            }else if(args.length == 1) {
-                if(VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
+            } else if (args.length == 1) {
+                if (VEssentials.PLUGIN.server.getServer(args[0]).isPresent()) {
                     RegisteredServer server = VEssentials.PLUGIN.server.getServer(args[0]).get();
-                    player.sendMessage(Messages.prefix.append(Component.text("§8Trying to connect to §1" + server.getServerInfo().getName() + "§8...")));
+                    player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Trying to connect to <blue>" + server.getServerInfo().getName() + "<gray>...")));
                     player.createConnectionRequest(server).fireAndForget();
                 }
-            }else player.sendMessage(Messages.toManyArgs);
-        }else player.sendMessage(Messages.prefix.append(Component.text("§cYou are on no server!")));
+            } else player.sendMessage(Messages.toManyArgs);
+        } else
+            player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You are on no server!")));
     }
     @Override
     public TabCompleter complete(String[] args) {
@@ -55,16 +57,16 @@ public class ServerCommand extends PluginCommand {
         return new TabCompleter(0,names);
     }
     public Component formatServer(RegisteredServer server, Player player) {
-        Component component = Component.text(server.getServerInfo().getName());
+        Component component = PlaceHolders.replaceAsComponent("<blue>server.getServerInfo().getName()");
         if(server.getPlayersConnected().contains(player)) {
-           component = component.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT,Component.text("§8You are connected to this Server! \n§1" +
-                    server.getPlayersConnected().size() + " §8players connected")))
-                   .color(TextColor.color(0x0000AA));
+            component = component.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, PlaceHolders.replaceAsComponent("<gray>You are connected to this Server! \n<blue>" +
+                            server.getPlayersConnected().size() + " <gray>players connected")))
+                    .color(TextColor.color(0x0000AA));
         }else {
-           component= component.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("§8Click to Connect to this Server \n§1"
-                    + server.getPlayersConnected().size() + " §8players connected")))
-                   .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND,"/server " + server.getServerInfo().getName()))
-                   .color(TextColor.color(0x555555));
+            component = component.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, PlaceHolders.replaceAsComponent("<gray>Click to Connect to this Server \n<blue>"
+                            + server.getPlayersConnected().size() + " <gray>players connected")))
+                    .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/server " + server.getServerInfo().getName()))
+                    .color(TextColor.color(0x555555));
         }
     return component;
     }

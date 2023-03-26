@@ -48,9 +48,9 @@ public class JoinEvent {
     @Subscribe
     public void onResourePack(PlayerResourcePackStatusEvent event) {
         if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED) {
-            event.getPlayer().disconnect(Component.text("§cBitte akzepiere das Texture Pack!"));
+            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<red>Bitte akzepiere das Texture Pack!"));
         } else if (event.getStatus() == (PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD)) {
-            event.getPlayer().disconnect(Component.text("§4§lDer download des Texture Packs ist fehlgeschlagen!"));
+            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<dark_red><b>Der download des Texture Packs ist fehlgeschlagen!"));
         }
     }
 
@@ -59,16 +59,16 @@ public class JoinEvent {
         if (event.getPreviousServer() == null) {
             event.getPlayer().sendResourcePackOffer(
                     VEssentials.PLUGIN.server.createResourcePackBuilder("https://download.mc-packs.net/pack/083434e2244c6ada87c0286420a5f191c8567850.zip")
-                            .setPrompt(Component
-                                    .text("§8§m                     §r§8| §1TexturePack §8|§8§m                     ")
+                            .setPrompt(PlaceHolders
+                                    .replaceAsComponent("<gray><st>                     <reset><gray>| <blue>TexturePack <gray>|<gray><st>                     ")
                                     .appendNewline()
                                     .appendNewline()
-                                    .append(Component.text("§8Bitte akzeptiere das Kreiscraft Texture Pack"))
+                                    .append(PlaceHolders.replaceAsComponent("<gray>Bitte akzeptiere das Kreiscraft Texture Pack"))
                                     .appendNewline()
-                                    .append(Component.text("§8Das Texturepack ist ein  Teil des neuen Plugins Slimefun"))
+                                    .append(PlaceHolders.replaceAsComponent("<gray>Das Texturepack ist ein Teil des neuen Plugins Slimefun"))
                                     .appendNewline()
                                     .appendNewline()
-                                    .append(Component.text("§8§m                     §r§8| §1TexturePack §8|§8§m                     ")))
+                                    .append(PlaceHolders.replaceAsComponent("<gray><st>                     <reset><gray>| <blue>TexturePack <gray>|<gray><st>                     ")))
                             .build());
         }
     }

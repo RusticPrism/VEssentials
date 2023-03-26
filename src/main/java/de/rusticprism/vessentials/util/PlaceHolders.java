@@ -35,22 +35,22 @@ public class PlaceHolders {
         //text = text.replaceAll("%player_prefix%",setup.groups.getPlayerGroup(player.getUsername()).getPrefix());
         //text = text.replaceAll("%player_suffix%",setup.groups.getPlayerGroup(player.getUsername()).getSuffix());
         text = text.replaceAll("%player_ping%", String.valueOf((int) player.getPing()));
-        text = text.replaceAll("%player_server%",player.getCurrentServer().isPresent() ? player.getCurrentServer().get().getServerInfo().getName() : "§cNull");
-        text = text.replaceAll("%player_server_players%", player.getCurrentServer().isPresent() ? String.valueOf(player.getCurrentServer().get().getServer().getPlayersConnected().size()) : "§c0");
+        text = text.replaceAll("%player_server%", player.getCurrentServer().isPresent() ? player.getCurrentServer().get().getServerInfo().getName() : "<red>Null");
+        text = text.replaceAll("%player_server_players%", player.getCurrentServer().isPresent() ? String.valueOf(player.getCurrentServer().get().getServer().getPlayersConnected().size()) : "<red>0");
         //text = text.replaceAll("%player_group%",setup.groups.getPlayerGroup(player.getUsername()).getName());
         text = text.replaceAll("%player_banned%", String.valueOf(Configurations.getConfig(BanConfig.class).isBanned(player)));
         //if player is banned value will be replaced else placeholder is replaced with null!
-        text = text.replaceAll("%player_banned_reason%",Configurations.getConfig(BanConfig.class).getReason(player));
+        text = text.replaceAll("%player_banned_reason%", Configurations.getConfig(BanConfig.class).getReason(player));
         text = text.replaceAll("%player_banned_time%", Configurations.getConfig(BanConfig.class).getTime(player));
         text = text.replaceAll("%player_banned_bannedby%", Configurations.getConfig(BanConfig.class).getBannedBy(player));
-        text = text.replaceAll("%player_kicked_kickedby%", Configurations.getConfig(DataConfig.class).kickPlayer);
-        text = text.replaceAll("%player_kicked_reason%",Configurations.getConfig(DataConfig.class).kickReason);
+        text = text.replaceAll("%player_kicked_kickedby%", Configurations.getConfig(DataConfig.class).getKickPlayer());
+        text = text.replaceAll("%player_kicked_reason%", Configurations.getConfig(DataConfig.class).getKickReason());
         text = replacePlaceHolders(text);
         return text;
     }
     public static String replacePlaceHolders(String text) {
-        text = text.replaceAll("%plugin_prefix%",MiniMessage.miniMessage().serialize(Messages.prefix));
-        text = text.replaceAll("%system_time%", new SimpleDateFormat("HHmmss").format(DateFormat.getDateInstance().getCalendar().getTime()));
+        text = text.replaceAll("%plugin_prefix%", MiniMessage.miniMessage().serialize(Messages.prefix));
+        text = text.replaceAll("%system_time%", new SimpleDateFormat("HH:mm:ss").format(DateFormat.getDateInstance().getCalendar().getTime()));
         text = text.replaceAll("%server_players%", String.valueOf(vEssentials.server.getAllPlayers().size()));
         text = text.replaceAll("%server_maintenance%", String.valueOf(Configurations.getConfig(DataConfig.class).isMaintenance()));
         text = text.replaceAll("%server_maintenance_player%", Configurations.getConfig(DataConfig.class).getMaintenanceplayer());

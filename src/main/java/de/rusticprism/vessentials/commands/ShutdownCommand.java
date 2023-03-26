@@ -33,13 +33,14 @@ public class ShutdownCommand extends PluginCommand {
                 reason = reasonbuilder.substring(0, reasonbuilder.length() - 1);
             }
             restart = new Restart(source, time, reason);
-            if(restart.getTime() == 0) {
+            if (restart.getTime() == 0) {
                 restart = null;
                 return;
             }
-            source.sendMessage(Messages.prefix.append(Component.text("§8Restarting §1Proxy §8in §1" + time)));
+            source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Restarting <blue>Proxy <gray>in <blue>" + NumberUtils.format(restart.getTime()))));
             RestartScheduler.run(restart);
-        }else source.sendMessage(Component.text("§cServer is already Shutting down in §4" + restart.getTime() + " §cSeconds"));
+        } else
+            source.sendMessage(PlaceHolders.replaceAsComponent("<red>Server is already Shutting down in <dark_red>" + restart.getTime() + " <red>Seconds"));
     }
 
     @Override

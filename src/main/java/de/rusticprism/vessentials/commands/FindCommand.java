@@ -21,7 +21,7 @@ public class FindCommand extends PluginCommand {
             return;
         }
         source.sendMessage(Messages.prefix.append(PlaceHolders
-                .replaceAsComponent("<red>The Player is connected to %player_server%", VEssentials.PLUGIN.server.getPlayer(args[0]).get())));
+                .replaceAsComponent("<gray>The Player is connected to <blue>%player_server%", VEssentials.PLUGIN.server.getPlayer(args[0]).get())));
     }
 
     @Override

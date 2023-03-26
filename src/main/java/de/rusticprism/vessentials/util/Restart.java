@@ -35,7 +35,7 @@ public class Restart {
             try {
                 Integer.parseInt(time.replace("h",""));
             }catch (NumberFormatException e) {
-                source.sendMessage(Messages.prefix.append(Component.text("§cNo TimeUnit because of §4" + e.getMessage())));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>No TimeUnit because of <dark_red>" + e.getMessage())));
                 return 0;
             }
             endtime = Integer.parseInt(time.replace("h","")) * 3600;
@@ -43,19 +43,20 @@ public class Restart {
             try {
                 Integer.parseInt(time.replace("m",""));
             }catch (NumberFormatException e) {
-                source.sendMessage(Messages.prefix.append(Component.text("§cNo TimeUnit because of §4" + e.getMessage())));
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>No TimeUnit because of <dark_red>" + e.getMessage())));
                 return 0;
             }
             endtime = Integer.parseInt(time.replace("m","")) * 60;
         }else if (time.toLowerCase().contains("s")) {
             try {
-                Integer.parseInt(time.replace("s",""));
-            }catch (NumberFormatException e) {
-                source.sendMessage(Messages.prefix.append(Component.text("§cNo TimeUnit because of §4" + e.getMessage())));
+                Integer.parseInt(time.replace("s", ""));
+            } catch (NumberFormatException e) {
+                source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>No TimeUnit because of <dark_red>" + e.getMessage())));
                 return 0;
             }
-            endtime = Integer.parseInt(time.replace("s",""));
-        }else source.sendMessage(Messages.prefix.append(Component.text("§cNo Timeunit could be found!")));
+            endtime = Integer.parseInt(time.replace("s", ""));
+        } else
+            source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>No Timeunit could be found!")));
         return endtime;
     }
 }

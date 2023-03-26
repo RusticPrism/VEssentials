@@ -12,13 +12,13 @@ public class SaveConfigEvents {
     @Subscribe
     public void onShutdown(ProxyShutdownEvent e) {
         for(Config config : Configurations.configs.values()) {
-            config.getConfig().saveToFile(config.getFile(),"Error creating the File " + config.getName() + "!");
+            config.saveConfig();
         }
     }
     @Subscribe
     public void onReload(ProxyReloadEvent e) {
         for(Config config : Configurations.configs.values()) {
-            config.getConfig().saveToFile(config.getFile(),"Error creating the File " + config.getName() + "!");
+            config.saveConfig();
         }
     }
 }

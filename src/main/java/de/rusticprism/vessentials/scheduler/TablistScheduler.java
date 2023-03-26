@@ -14,8 +14,8 @@ public class TablistScheduler {
             server.getScheduler().buildTask(VEssentials.PLUGIN, () -> {
                     for(Player player : VEssentials.PLUGIN.server.getAllPlayers()) {
                         if(Configurations.getConfig(DataConfig.class).isTablist()) {
-                            player.sendPlayerListHeaderAndFooter(PlaceHolders.replaceAsComponent("server-tablist-header", player),
-                                    PlaceHolders.replaceAsComponent("server-tablist-footer", player));
+                            player.sendPlayerListHeaderAndFooter(PlaceHolders.translate("server-tablist-header", player),
+                                    PlaceHolders.translate("server-tablist-footer", player));
                         }
                     }
                 }).repeat(1L, TimeUnit.SECONDS)

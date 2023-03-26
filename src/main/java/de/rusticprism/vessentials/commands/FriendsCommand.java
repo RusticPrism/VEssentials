@@ -42,11 +42,11 @@ public class FriendsCommand extends PluginCommand {
                         return;
                     }
                     if(!config.sendRequest(player, target)) {
-                        player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<dark_gray>You´ve already sent this Player a Friend request")));
-                        return;
-                    }
-                    player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<dark_gray>Successfully sent <purple>" + target.getUsername() + " <dark_gray>a Friend Request.")));
-                }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>You´ve already sent this Player a Friend request")));
+       return;
+       }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully sent <purple>" + target.getUsername() + " <gray>a Friend Request.")));
+       }
                 case "remove" -> {
                     if(args[1].equalsIgnoreCase(player.getUsername())) {
                         player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You cannot remove yourself as a Friend!")));
@@ -57,35 +57,35 @@ public class FriendsCommand extends PluginCommand {
                         player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You don´t have that Player as a Friend!")));
                         return;
                     }
-                    config.removeFriend(player,uuid);
-                    player.sendMessage(Component.text("Removed"));
-                }
+       config.removeFriend(player,uuid);
+       player.sendMessage(PlaceHolders.replaceAsComponent("Removed"));
+       }
                 case "accept"-> {
                     String uuid = UUIdUtils.getUUId(args[1]);
                     if(!config.acceptRequest(player, uuid)) {
-                        player.sendMessage(Messages.prefix.append(Component.text("<red>This Player hasn't sent you a Friend Request.")));
-                        return;
-                    }
-                    player.sendMessage(Messages.prefix.append(Component.text("<dark_gray>Successfully accepted <purple>"  + UUIdUtils.getName(uuid) + "´s <dark_gray>Friend Request.")));
-                }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>This Player hasn't sent you a Friend Request.")));
+       return;
+       }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully accepted <purple>"  + UUIdUtils.getName(uuid) + "´s <gray>Friend Request.")));
+       }
                 case "decline" -> {
                     String uuid = UUIdUtils.getUUId(args[1]);
                     if(!config.declineRequest(player, uuid)) {
-                        player.sendMessage(Messages.prefix.append(Component.text("<red>This Player hasn't sent you a Friend Request.")));
-                        return;
-                    }
-                    player.sendMessage(Messages.prefix.append(Component.text("<dark_gray>Successfully declined <purple>"  + UUIdUtils.getName(uuid) + "´s <dark_gray>Friend Request.")));
-                }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>This Player hasn't sent you a Friend Request.")));
+       return;
+       }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully declined <purple>"  + UUIdUtils.getName(uuid) + "´s <gray>Friend Request.")));
+       }
                 case "acceptAll" -> {
                     for (String uuid : config.getRequests(player)) {
                         config.acceptRequest(player, uuid);
-                    }
-                    player.sendMessage(Messages.prefix.append(Component.text("<dark_gray>Successfully accepted <purple>all <dark_gray>Friend Requests.")));
-                }
+       }
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully accepted <purple>all <gray>Friend Requests.")));
+       }
                 case "declineAll" -> {
-                    config.setRequests(player, Collections.emptyList());
-                    player.sendMessage(Messages.prefix.append(Component.text("<dark_gray>Successfully declined <purple>all <dark_gray>Friend Requests.")));
-                }
+       config.setRequests(player, Collections.emptyList());
+       player.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<gray>Successfully declined <purple>all <gray>Friend Requests.")));
+       }
                 default -> player.sendMessage(Messages.args);
             }
         }

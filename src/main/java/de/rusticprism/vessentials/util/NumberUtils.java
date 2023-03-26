@@ -1,7 +1,10 @@
 package de.rusticprism.vessentials.util;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import java.time.Duration;
+import java.time.temporal.Temporal;
+import java.util.concurrent.TimeUnit;
 
 public final class NumberUtils {
     private void NumberConversions() {
@@ -116,12 +119,24 @@ public final class NumberUtils {
             throw new IllegalArgumentException(message);
         }
     }
+
     public static boolean isInteger(String number) {
         try {
             Integer.parseInt(number);
             return true;
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public static String format(int seconds) {
+        int day = (int) TimeUnit.SECONDS.toDays(seconds);
+        long hours = TimeUnit.SECONDS.toHours(seconds) - (day * 24L);
+        long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds) * 60);
+        long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) * 60);
+        return (day == 0 ? "" : day + " Days") +
+                (hours == 0 ? "" : hours + " Hours") +
+                (minute == 0 ? "" : minute + " Minutes") +
+                (second == 0 ? "" : second + " Seconds");
     }
 }

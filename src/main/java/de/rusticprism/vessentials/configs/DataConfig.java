@@ -1,16 +1,34 @@
 package de.rusticprism.vessentials.configs;
 
-public class DataConfig extends Config{
+public class DataConfig extends Config {
 
-    public String kickReason = "Kicked by an Operator";
-    public String kickPlayer = "CONSOLE";
+    private String kickReason = "Kicked by an Operator";
+    private String kickPlayer = "CONSOLE";
 
     public boolean friendsMessage = true;
+
     public DataConfig() {
         super("data", true);
     }
+
     public String getLobbyServer() {
         return config.getString("LobbyServer");
+    }
+
+    public String getKickReason() {
+        return kickReason;
+    }
+
+    public void setKickReason(String kickReason) {
+        this.kickReason = kickReason;
+    }
+
+    public String getKickPlayer() {
+        return kickPlayer;
+    }
+
+    public void setKickPlayer(String kickPlayer) {
+        this.kickPlayer = kickPlayer;
     }
 
     public boolean isMaintenance() {
@@ -18,8 +36,8 @@ public class DataConfig extends Config{
     }
 
     public void setMaintenance(boolean maintenance) {
-        config.set("maintenance", String.valueOf(maintenance));
-        config.saveToFile(getFile(),"Error occurred saving " + getName() + "!");
+        config.set("maintenance", maintenance);
+        saveConfig();
     }
 
     public String getMaintenancereason() {
@@ -28,7 +46,7 @@ public class DataConfig extends Config{
 
     public void setMaintenancereason(String maintenancereason) {
         config.set("maintenance-reason", maintenancereason);
-        config.saveToFile(getFile(),"Error occurred saving " + getName() + "!");
+        saveConfig();
     }
 
     public String getMaintenanceplayer() {
@@ -37,16 +55,16 @@ public class DataConfig extends Config{
 
     public void setMaintenanceplayer(String maintenanceplayer) {
         config.set("maintenance-player", maintenanceplayer);
-        config.saveToFile(getFile(),"Error occurred saving " + getName() + "!");
+        saveConfig();
     }
 
     public boolean isTablist() {
-        return Boolean.parseBoolean(String.valueOf(config.get("tablist")));
+        return config.getBoolean("global-tablist");
     }
 
     public void setTablist(boolean tablist) {
-        config.set("tablist", String.valueOf(tablist));
-        config.saveToFile(getFile(),"Error occurred saving " + getName() + "!");
+        config.set("global-tablist", tablist);
+        saveConfig();
     }
     public boolean isFriendsMessage() {
         return friendsMessage;
@@ -54,9 +72,9 @@ public class DataConfig extends Config{
 
     @Override
     public void createDefault() {
-        config.set("maintenance", "false");
-        config.set("global-tablist", "true");
-        config.set("friends-message", "true");
+        config.set("maintenance", false);
+        config.set("global-tablist", true);
+        config.set("friends-message", true);
         config.set("LobbyServer", "lobby");
     }
 }

@@ -27,6 +27,7 @@ public abstract class Config {
             }
             config = YamlConfiguration.loadConfiguration(file);
             createDefault();
+            saveConfig();
         }else config = YamlConfiguration.loadConfiguration(file);
     }
     public abstract void createDefault();
@@ -41,5 +42,9 @@ public abstract class Config {
 
     public File getFile() {
         return file;
+    }
+
+    public void saveConfig() {
+        config.saveToFile(file, "An error occurred trying to save the Config! (" + name + ")");
     }
 }

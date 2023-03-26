@@ -5,6 +5,7 @@ import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.util.Messages;
+import de.rusticprism.vessentials.util.PlaceHolders;
 import net.kyori.adventure.text.Component;
 import org.reflections.Reflections;
 
@@ -31,7 +32,7 @@ public class VEssentialsCommand implements SimpleCommand {
         PluginCommand pluginCommand = commands.get(invocation.alias());
         if(!pluginCommand.getCommandInfo().permission().isEmpty()) {
             if(!source.hasPermission(pluginCommand.getCommandInfo().permission())) {
-                source.sendMessage(Messages.noperms.append(Component.text(" <dark_red>(" + pluginCommand.getCommandInfo().permission() + ")")));
+                source.sendMessage(Messages.noperms.append(PlaceHolders.replaceAsComponent(" <dark_red>(" + pluginCommand.getCommandInfo().permission() + ")")));
                 return;
             }
         }
