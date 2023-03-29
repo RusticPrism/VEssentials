@@ -13,7 +13,7 @@ import de.rusticprism.vessentials.util.PlaceHolders;
 
 import java.util.Optional;
 
-@CommandInfo(name = "lobby", permission = "essentials.command.lobby", requiresPlayer = true)
+@CommandInfo(name = "lobby", permission = "essentials.command.lobby", requiresPlayer = true, aliases = {"l", "hub"})
 public class LobbyCommand extends PluginCommand {
 
     @Override

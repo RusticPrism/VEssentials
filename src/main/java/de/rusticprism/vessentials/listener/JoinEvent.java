@@ -3,8 +3,6 @@ package de.rusticprism.vessentials.listener;
 import com.velocitypowered.api.event.ResultedEvent;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.LoginEvent;
-import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
-import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.configs.BanConfig;
@@ -12,10 +10,6 @@ import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.configs.DataConfig;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.PlaceHolders;
-import dev.simplix.protocolize.api.Protocolize;
-import net.kyori.adventure.chat.SignedMessage;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.ScoreComponent;
 
 public class JoinEvent {
 
@@ -45,7 +39,7 @@ public class JoinEvent {
         }
     }
 
-    @Subscribe
+   /* @Subscribe
     public void onResourePack(PlayerResourcePackStatusEvent event) {
         if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED) {
             event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<red>Bitte akzepiere das Texture Pack!"));
@@ -72,4 +66,5 @@ public class JoinEvent {
                             .build());
         }
     }
+    */
 }

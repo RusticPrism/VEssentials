@@ -9,6 +9,7 @@ import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import de.rusticprism.vessentials.VEssentials;
+import javassist.bytecode.annotation.MemberValueVisitor;
 
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -57,6 +58,15 @@ public class PluginMessageListener{
                     out.writeUTF("0");
                 }
                 connection.getServer().sendPluginMessage(MODERNCHANNEL, out.toByteArray());
+            }
+            if (subChannel.equalsIgnoreCase("connect")) {
+                String server = in.readUTF();
+                if (VEssentials.PLUGIN.server.getServer(server).isEmpty()) {
+                    event.setResult(PluginMessageEvent.ForwardResult.forward());
+                    return;
+                }
+                connection.getPlayer().createConnectionRequest(VEssentials.PLUGIN.server.getServer(server).get()).fireAndForget();
+                event.setResult(PluginMessageEvent.ForwardResult.handled());
             }
         }
         event.setResult(PluginMessageEvent.ForwardResult.forward());
