@@ -1,5 +1,9 @@
 package de.rusticprism.vessentials.configs;
 
+import com.velocitypowered.api.proxy.player.ResourcePackInfo;
+import de.rusticprism.vessentials.VEssentials;
+import de.rusticprism.vessentials.util.PlaceHolders;
+
 public class DataConfig extends Config {
 
     private String kickReason = "Kicked by an Operator";
@@ -32,7 +36,16 @@ public class DataConfig extends Config {
     }
 
     public boolean isMaintenance() {
-        return Boolean.parseBoolean(String.valueOf(config.get("maintenance")));
+        return config.getBoolean("maintenance");
+    }
+
+    public boolean isTexturePack() {
+        return config.getBoolean("texturepack");
+    }
+    public ResourcePackInfo getTexturePack() {
+        return VEssentials.PLUGIN.server.createResourcePackBuilder(config.getString("texturepack-link"))
+                .setPrompt(PlaceHolders.translate("server-texturepack-promt"))
+                .build();
     }
 
     public void setMaintenance(boolean maintenance) {
@@ -76,5 +89,7 @@ public class DataConfig extends Config {
         config.set("global-tablist", true);
         config.set("friends-message", true);
         config.set("LobbyServer", "lobby");
+        config.set("texturepack", false);
+        config.set("texturepack-link", "https://www.kreiscraft.net/uploads/Texturepack.zip");
     }
 }

@@ -3,11 +3,14 @@ package de.rusticprism.vessentials.listener;
 import com.velocitypowered.api.event.ResultedEvent;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.LoginEvent;
+import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
+import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import com.velocitypowered.api.proxy.Player;
 import de.rusticprism.vessentials.VEssentials;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.configs.DataConfig;
+import de.rusticprism.vessentials.configs.util.FileConfiguration;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.PlaceHolders;
 
@@ -39,32 +42,20 @@ public class JoinEvent {
         }
     }
 
-   /* @Subscribe
+    @Subscribe
     public void onResourePack(PlayerResourcePackStatusEvent event) {
         if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED) {
-            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<red>Bitte akzepiere das Texture Pack!"));
+            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<red>You have to accept the Texturepack"));
         } else if (event.getStatus() == (PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD)) {
-            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<dark_red><b>Der download des Texture Packs ist fehlgeschlagen!"));
+            event.getPlayer().disconnect(PlaceHolders.replaceAsComponent("<dark_red><b>Error while trying to download the Texturepack"));
         }
     }
 
     @Subscribe
     public void onServerChange(ServerPostConnectEvent event) {
-        if (event.getPreviousServer() == null) {
-            event.getPlayer().sendResourcePackOffer(
-                    VEssentials.PLUGIN.server.createResourcePackBuilder("https://download.mc-packs.net/pack/083434e2244c6ada87c0286420a5f191c8567850.zip")
-                            .setPrompt(PlaceHolders
-                                    .replaceAsComponent("<gray><st>                     <reset><gray>| <blue>TexturePack <gray>|<gray><st>                     ")
-                                    .appendNewline()
-                                    .appendNewline()
-                                    .append(PlaceHolders.replaceAsComponent("<gray>Bitte akzeptiere das Kreiscraft Texture Pack"))
-                                    .appendNewline()
-                                    .append(PlaceHolders.replaceAsComponent("<gray>Das Texturepack ist ein Teil des neuen Plugins Slimefun"))
-                                    .appendNewline()
-                                    .appendNewline()
-                                    .append(PlaceHolders.replaceAsComponent("<gray><st>                     <reset><gray>| <blue>TexturePack <gray>|<gray><st>                     ")))
-                            .build());
+        DataConfig dataconfig = Configurations.getConfig(DataConfig.class);
+        if (event.getPreviousServer() == null && dataconfig.isTexturePack()) {
+            event.getPlayer().sendResourcePackOffer(dataconfig.getTexturePack());
         }
     }
-    */
 }

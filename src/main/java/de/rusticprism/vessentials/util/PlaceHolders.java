@@ -15,11 +15,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class PlaceHolders {
     private static VEssentials vEssentials;
@@ -49,8 +53,10 @@ public class PlaceHolders {
         return text;
     }
     public static String replacePlaceHolders(String text) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
         text = text.replaceAll("%plugin_prefix%", MiniMessage.miniMessage().serialize(Messages.prefix));
-        text = text.replaceAll("%system_time%", new SimpleDateFormat("HH:mm:ss").format(DateFormat.getDateInstance().getCalendar().getTime()));
+        text = text.replaceAll("%system_time%", dateFormat.format(Time.from(Instant.now())));
         text = text.replaceAll("%server_players%", String.valueOf(vEssentials.server.getAllPlayers().size()));
         text = text.replaceAll("%server_maintenance%", String.valueOf(Configurations.getConfig(DataConfig.class).isMaintenance()));
         text = text.replaceAll("%server_maintenance_player%", Configurations.getConfig(DataConfig.class).getMaintenanceplayer());

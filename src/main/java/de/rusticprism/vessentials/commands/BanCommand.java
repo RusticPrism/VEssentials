@@ -11,6 +11,8 @@ import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.util.Messages;
 import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.PlaceHolders;
+import dev.simplix.protocolize.api.inventory.InventoryClick;
+import dev.simplix.protocolize.api.inventory.InventoryClose;
 import net.kyori.adventure.text.Component;
 
 @CommandInfo(name = "vban", permission = "essentials.command.ban")
@@ -20,10 +22,6 @@ public class BanCommand extends PluginCommand {
             if(args.length >= 1) {
                 if (VEssentials.PLUGIN.server.getPlayer(args[0]).isPresent()) {
                     Player target = VEssentials.PLUGIN.server.getPlayer(args[0]).get();
-                    if (Permission.hasPermission(target, "essentials.command.ban")) {
-                        source.sendMessage(Messages.prefix.append(PlaceHolders.replaceAsComponent("<red>You don't have the Permission to ban this Player")));
-                        return;
-                    }
                     StringBuilder builder = new StringBuilder();
                     if (args.length == 1) {
                         builder.append("Banned by an Operator ");

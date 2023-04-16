@@ -66,3 +66,11 @@ server-joinme-message:
   - "<reset><blue><b>%player_name% <reset><gray>is playing on<blue> <b>%player_server%"
   - "<gray>Click here to join"
   - "<gray><st>                     <reset><gray>[<blue><b>JoinMe<reset><gray>]<st>                     "
+server-texturepack-promt:
+  - "<gray><st>                     <reset><gray>[<blue>TexturePack<gray>]<gray><st>                     <reset>"
+  - " "
+  - " "
+  - "<gray>Please accept the Server ResourcePack"
+  - " "
+  - " "
+  - "<gray><st>                     <reset><gray>[<blue>TexturePack<gray>]<gray><st>                     <reset>"
