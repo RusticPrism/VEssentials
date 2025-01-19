@@ -19,12 +19,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
+    compileOnly("com.velocitypowered:velocity-api:3.2.0-SNAPSHOT") {
+        exclude group: "org.yaml:snakeyaml:1.26"
+    }
     annotationProcessor "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
-    compileOnly("dev.simplix:protocolize-api:2.2.6")
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.0'
-    compileOnly files('C:/Users/Anwender/Desktop/Plugins/VEssentials/velocity-proxy.jar')
+    implementation "dev.simplix:protocolize-api:2.2.6"
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.2'
+    implementation 'com.velocitypowered:velocity-proxy:3.2.1-SNAPSHOT'
     }
 
 

@@ -9,6 +9,11 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import de.rusticprism.vessentials.listener.*;
 import dev.simplix.protocolize.api.Protocolize;
+import net.kyori.adventure.Adventure;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.translation.GlobalTranslator;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -21,7 +26,7 @@ import java.nio.file.Path;
         authors = {"RusticPrism"},
         dependencies = {
                 @Dependency(id = "luckperms", optional = true),
-                @Dependency(id = "protocolize")
+                @Dependency(id = "protocolize", optional = true)
         }
 )
 public class VEssentials {
@@ -39,8 +44,10 @@ public class VEssentials {
         this.logger = logger;
         this.path = path;
         this.setup = new Setup();
-        Protocolize.listenerProvider().registerListener(new ServerSafePacketListener());
-        Protocolize.listenerProvider().registerListener(new SecureProfilePacketListener());
+        if(server.getPluginManager().isLoaded("Protocolize")) {
+            Protocolize.listenerProvider().registerListener(new ServerSafePacketListener());
+            Protocolize.listenerProvider().registerListener(new SecureProfilePacketListener());
+        }else System.out.println("Error loading Protocolize");
     }
 
 

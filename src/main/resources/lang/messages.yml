@@ -1,4 +1,4 @@
-server-ban-message:
+gserver-ban-message:
   - "<gray>---------------------------------"
   - " "
   - "<gray>You got <blue><b>banned <reset><gray>by <blue><b>%player_name%"

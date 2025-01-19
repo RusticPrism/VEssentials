@@ -3,6 +3,7 @@ package de.rusticprism.vessentials.listener;
 import com.velocitypowered.api.event.ResultedEvent;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.LoginEvent;
+import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.event.player.PlayerResourcePackStatusEvent;
 import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import com.velocitypowered.api.proxy.Player;
@@ -32,13 +33,17 @@ public class JoinEvent {
         } else if (dataConfig.isMaintenance()) {
             player.sendMessage(PlaceHolders.translate("server-maintenance-message"));
         }
-        //Is Global Tablist
-        if (dataConfig.isTablist()) {
-            player.sendPlayerListHeaderAndFooter(PlaceHolders.replaceAsComponent("server-tablist-header", player),
-                    PlaceHolders.translate("server-tablist-footer", player));
-        }
         if (VEssentials.PLUGIN.setup.groups.getPlayerGroup(player.getUsername()) == null) {
             VEssentials.PLUGIN.setup.groups.getGroup("Player").addPlayer(player.getUsername());
+        }
+    }
+    @Subscribe
+    public void onPostLogin(PostLoginEvent event) {
+        DataConfig dataConfig = Configurations.getConfig(DataConfig.class);
+        //Is Global Tablist
+        if (dataConfig.isTablist()) {
+            event.getPlayer().sendPlayerListHeader(PlaceHolders.replaceAsComponent("server-tablist-header", event.getPlayer()));
+            event.getPlayer().sendPlayerListFooter(PlaceHolders.translate("server-tablist-footer", event.getPlayer()));
         }
     }
 

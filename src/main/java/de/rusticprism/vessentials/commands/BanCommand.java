@@ -9,11 +9,7 @@ import de.rusticprism.vessentials.commands.util.TabCompleter;
 import de.rusticprism.vessentials.configs.BanConfig;
 import de.rusticprism.vessentials.configs.Configurations;
 import de.rusticprism.vessentials.util.Messages;
-import de.rusticprism.vessentials.util.Permission;
 import de.rusticprism.vessentials.util.PlaceHolders;
-import dev.simplix.protocolize.api.inventory.InventoryClick;
-import dev.simplix.protocolize.api.inventory.InventoryClose;
-import net.kyori.adventure.text.Component;
 
 @CommandInfo(name = "vban", permission = "essentials.command.ban")
 public class BanCommand extends PluginCommand {
